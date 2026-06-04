@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Slimergy — Sistema de Monitoreo de Energía Inteligente para hogares mexicanos. Visualiza tu consumo eléctrico en tiempo real, controla dispositivos remotamente y proyecta tu recibo de CFE.">
+  <meta name="keywords" content="monitoreo energía, ahorro electricidad, CFE, IoT, ESP32, México, smart home">
+  <meta property="og:title" content="Slimergy — El poder de ahorrar empieza con medir">
+  <meta property="og:description" content="Sistema IoT para hogares mexicanos. ESP32 + PZEM-004T + App React Native.">
+  <meta property="og:image" content="assets/img/logo.png">
+  <meta property="og:type" content="website">
+  <title>Slimergy — El poder de ahorrar empieza con medir</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <img src="assets/img/logo.png" alt="Slimergy">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="https://www.instagram.com/slimergy_26/" target="_blank" rel="noopener" class="nav-cta">Instagram</a></li>
+      </ul>
+      <div class="hamburger" id="ham" onclick="toggleMob()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-x" onclick="toggleMob()">✕</button>
+  <a href="#como-funciona" onclick="toggleMob()">Cómo funciona</a>
+  <a href="#caracteristicas" onclick="toggleMob()">Características</a>
+  <a href="#hardware" onclick="toggleMob()">Hardware</a>
+  <a href="#demo" onclick="toggleMob()">Demo</a>
+  <a href="#equipo" onclick="toggleMob()">Equipo</a>
+  <a href="https://www.instagram.com/slimergy_26/" target="_blank" rel="noopener">Instagram</a>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+
+  <svg class="hero-art" viewBox="0 0 700 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#52C234" stroke-width="1">
+      <line x1="80" y1="80"  x2="280" y2="80"/><line x1="280" y1="80" x2="280" y2="180"/>
+      <line x1="280" y1="180" x2="460" y2="180"/><line x1="460" y1="180" x2="460" y2="120"/>
+      <line x1="460" y1="120" x2="620" y2="120"/>
+      <circle cx="280" cy="80"  r="4" fill="#52C234"/>
+      <circle cx="280" cy="180" r="4" fill="#52C234"/>
+      <circle cx="460" cy="180" r="4" fill="#52C234"/>
+      <rect x="258" y="158" width="44" height="44" rx="6"/>
+      <line x1="280" y1="158" x2="280" y2="145"/><line x1="302" y1="158" x2="302" y2="145"/>
+      <line x1="258" y1="168" x2="245" y2="168"/><line x1="258" y1="185" x2="245" y2="185"/>
+      <line x1="302" y1="168" x2="315" y2="168"/><line x1="302" y1="185" x2="315" y2="185"/>
+
+      <line x1="150" y1="300" x2="350" y2="300"/><line x1="350" y1="300" x2="350" y2="400"/>
+      <line x1="350" y1="400" x2="550" y2="400"/><line x1="550" y1="400" x2="550" y2="340"/>
+      <line x1="550" y1="340" x2="680" y2="340"/>
+      <circle cx="350" cy="300" r="4" fill="#52C234"/>
+      <circle cx="350" cy="400" r="4" fill="#52C234"/>
+      <circle cx="550" cy="400" r="4" fill="#52C234"/>
+      <rect x="328" y="378" width="44" height="44" rx="6"/>
+
+      <line x1="40"  y1="460" x2="180" y2="460"/><line x1="180" y1="460" x2="180" y2="520"/>
+      <line x1="180" y1="520" x2="420" y2="520"/>
+      <circle cx="180" cy="460" r="4" fill="#52C234"/>
+      <circle cx="180" cy="520" r="4" fill="#52C234"/>
+
+      <line x1="600" y1="50" x2="600" y2="550" stroke-dasharray="5 10" stroke-width=".6"/>
+      <line x1="660" y1="80" x2="660" y2="520" stroke-dasharray="5 10" stroke-width=".6"/>
+
+      <circle cx="460" cy="120" r="3" fill="none" stroke="#2B8AC7"/>
+      <circle cx="620" cy="120" r="3" fill="none" stroke="#2B8AC7"/>
+      <circle cx="680" cy="340" r="3" fill="none" stroke="#2B8AC7"/>
+    </g>
+  </svg>
+
+  <div class="ptcl" id="ptcl"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge hero-fade-1">
+          <div class="hero-badge-dot"></div>
+          <span>Sistema IoT · ESP32 + MQTT · React Native</span>
+        </div>
+
+        <h1 class="hero-title hero-fade-2">
+          El poder de <em>ahorrar</em><br>empieza con <em>medir</em>
+        </h1>
+
+        <p class="hero-sub hero-fade-3">
+          Slimergy es un sistema embebido de monitoreo y control de energía eléctrica
+          para hogares mexicanos. Visualiza tu consumo en tiempo real, controla dispositivos
+          remotamente y proyecta tu recibo de CFE al centavo.
+        </p>
+
+        <div class="hero-ctas hero-fade-4">
+          <a href="#demo" class="btn btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Ver Demo
+          </a>
+          <a href="https://www.instagram.com/slimergy_26/" target="_blank" rel="noopener" class="btn btn-ig">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @slimergy_26
+          </a>
+          <a href="#como-funciona" class="btn btn-ghost">
+            Conocer más
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l10-10M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right-wrap hero-fade-5">
+        <div class="orb orb-g"></div>
+        <div class="orb orb-b"></div>
+        
+        <div class="app-mockup">
+          <div class="am-header">
+            <span class="am-greeting">Hola, Slimergy</span>
+            <span class="live-badge">En vivo</span>
+          </div>
+
+          <div class="am-green-card">
+            <div class="am-gc-top">
+              <span>Consumo actual</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="am-gc-main">
+              <span class="am-watts" id="heroW">1,240</span><span class="am-unit"> W</span>
+            </div>
+            
+            <div class="am-gc-stats">
+              <div class="am-stat">
+                <span class="am-lbl">VOLTAJE</span>
+                <span class="am-val">122V</span>
+              </div>
+              <div class="am-stat">
+                <span class="am-lbl">CORRIENTE</span>
+                <span class="am-val">10.1A</span>
+              </div>
+              <div class="am-stat am-no-border">
+                <span class="am-lbl">TOTAL KWH</span>
+                <span class="am-val">4.2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="am-row">
+            <div class="am-small-card">
+              <div class="am-sc-icon am-icon-green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="am-sc-info">
+                <span class="am-sc-lbl">Costo hoy</span>
+                <span class="am-sc-val">$<span id="heroC">5.04</span></span>
+              </div>
+            </div>
+            
+            <div class="am-small-card">
+              <div class="am-sc-icon am-icon-blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+              </div>
+              <div class="am-sc-info">
+                <span class="am-sc-lbl">Activos</span>
+                <span class="am-sc-val">2 disp.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="am-chart-card">
+            <div class="am-chart-title">Consumo 7 días</div>
+            <div class="am-bars">
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 40%"></div><span>L</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 50%"></div><span>M</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 70%"></div><span>M</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 35%"></div><span>J</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 65%"></div><span>V</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 95%"></div><span>S</span></div>
+              <div class="am-bar-wrap"><div class="am-bar" style="height: 80%"></div><span>D</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="sb-grid">
+      <div class="sb-item rv">
+        <div class="sb-num">±<span data-t="0.5" data-d="1">0</span>%</div>
+        <div class="sb-lbl">Precisión sensor<br>PZEM-004T</div>
+      </div>
+      <div class="sb-item rv d1">
+        <div class="sb-num"><span data-t="2" data-d="0">0</span>s</div>
+        <div class="sb-lbl">Actualización<br>en tiempo real</div>
+      </div>
+      <div class="sb-item rv d2">
+        <div class="sb-num">&lt;<span data-t="100" data-d="0">0</span>ms</div>
+        <div class="sb-lbl">Latencia de<br>control remoto</div>
+      </div>
+      <div class="sb-item rv d3">
+        <div class="sb-num"><span data-t="5" data-d="0">0</span></div>
+        <div class="sb-lbl">Pantallas<br>en la app móvil</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="how" id="como-funciona">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">El proceso</div>
+      <h2 class="sec-title">¿Cómo funciona Slimergy?</h2>
+      <p class="sec-desc">Un flujo de tres pasos que convierte tu instalación eléctrica en información útil, clara y accionable.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-icon">
+          <div class="step-ring"></div>
+          <div class="step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1" fill="currentColor"/>
+              <path d="M12 12l2.5-2.5"/><path d="M7 12a5 5 0 015-5"/>
+            </svg>
+          </div>
+          <div class="step-n">1</div>
+        </div>
+        <div class="step-title">Mide</div>
+        <div class="step-desc">El sensor PZEM-004T monitorea tu línea AC con precisión ±0.5%, midiendo voltaje, corriente, potencia activa y energía acumulada en kWh — sin cortar cables.</div>
+      </div>
+
+      <div class="step-arr rv d1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </div>
+
+      <div class="step rv d2">
+        <div class="step-icon">
+          <div class="step-ring" style="animation-direction:reverse;animation-duration:6s"></div>
+          <div class="step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 20h18"/><path d="M5 20V14l4 2 3-6 4 4 3-3V20"/>
+            </svg>
+          </div>
+          <div class="step-n">2</div>
+        </div>
+        <div class="step-title">Analiza</div>
+        <div class="step-desc">El ESP32 serializa los datos en JSON y los publica vía MQTT al broker HiveMQ cada 2 segundos. La app React Native los convierte en gráficas, costos CFE y alertas inteligentes.</div>
+      </div>
+
+      <div class="step-arr rv d3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
+      </div>
+
+      <div class="step rv d4">
+        <div class="step-icon">
+          <div class="step-ring" style="animation-duration:10s"></div>
+          <div class="step-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 8C8 10 5.9 16.17 3.82 19.5c0 0 4.18-4.5 9.18-4.5 3.5 0 6 2.5 6 2.5V8z"/>
+              <path d="M17 8c0-4-5-5-5-5"/>
+            </svg>
+          </div>
+          <div class="step-n">3</div>
+        </div>
+        <div class="step-title">Ahorra</div>
+        <div class="step-desc">Con visibilidad total y control remoto desde tu celular, toma decisiones que reduzcan costos, optimicen recursos y promuevan un uso eficiente de la energía en tu hogar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="caracteristicas">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">Funcionalidades</div>
+      <h2 class="sec-title">Todo para <span class="green">tomar el control</span></h2>
+      <p class="sec-desc">Hardware de bajo costo + software inteligente = visibilidad total de tu consumo eléctrico.</p>
+    </div>
+    <div class="feat-grid">
+
+      <div class="feat-card rv">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <div class="feat-title">Monitoreo en Tiempo Real</div>
+        <div class="feat-desc">Visualiza cuántos Watts consume cada cuarto y dispositivo, con actualización automática cada 2 segundos mediante el protocolo MQTT industrial.</div>
+      </div>
+
+      <div class="feat-card rv d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <div class="feat-title">Control Remoto</div>
+        <div class="feat-desc">Apaga y enciende enchufes inteligentes Slimergy desde tu celular con latencia menor a 100 ms. El relay ESP32 responde al instante.</div>
+      </div>
+
+      <div class="feat-card rv d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8v1m0 8v1m0-10V3m0 18v-1"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div class="feat-title">Cálculo de Costos CFE</div>
+        <div class="feat-desc">Calcula el costo en pesos según la tarifa escalonada DAC 2026 de CFE, con proyección al cierre del mes. Sin sorpresas en tu recibo.</div>
+      </div>
+
+      <div class="feat-card rv d1">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg></div>
+        <div class="feat-title">Alertas Inteligentes</div>
+        <div class="feat-desc">Notificaciones push cuando un dispositivo consume más del 40% sobre su promedio histórico, detectando posibles fallas o uso inusual.</div>
+      </div>
+
+      <div class="feat-card rv d2">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+        <div class="feat-title">Historial y Gráficas</div>
+        <div class="feat-desc">Gráficas de consumo diario, semanal y mensual. Identifica patrones de uso, picos de consumo y compara tu desempeño mes a mes.</div>
+      </div>
+
+      <div class="feat-card rv d3">
+        <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+        <div class="feat-title">Consejos Personalizados</div>
+        <div class="feat-desc">Recomendaciones de ahorro adaptadas al perfil de consumo real de tu hogar, generadas a partir de los datos históricos del sensor.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="mv" id="mision">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">Propósito</div>
+      <h2 class="sec-title">Por qué existe Slimergy</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card rv">
+        <div class="mv-eye">Misión</div>
+        <div class="mv-h">Lo que hacemos</div>
+        <div class="mv-text">
+          Desarrollar e implementar <b>soluciones inteligentes</b> de monitoreo eléctrico que transformen el
+          consumo de energía en información <b>clara y accionable</b>, permitiendo a hogares y pequeños negocios
+          tomar decisiones que <b>reduzcan costos</b>, <b>optimicen recursos</b> y promuevan un uso eficiente
+          de la energía mediante <b>tecnología accesible</b> e <b>innovación continua</b>.
+        </div>
+      </div>
+      <div class="mv-card rv d2">
+        <div class="mv-eye">Visión</div>
+        <div class="mv-h">Hacia dónde vamos</div>
+        <div class="mv-text">
+          Ser la principal <b>alternativa tecnológica</b> frente a los proveedores tradicionales de electricidad
+          en México, liderando la transición hacia un <b>modelo energético descentralizado</b>.
+          Posicionar a Slimergy como referente de <b>soberanía energética</b>, empoderando a hogares y negocios
+          para tomar el <b>control absoluto</b> de su consumo con innovación, autonomía y eficiencia.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hardware">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">Tecnología</div>
+      <h2 class="sec-title">Hardware del sistema</h2>
+      <p class="sec-desc">Tres componentes asequibles que trabajan en conjunto para un monitoreo y control de nivel profesional.</p>
+    </div>
+
+    <div class="hw-grid">
+      <div class="hw-card rv">
+        <div class="hw-chip">Microcontrolador</div>
+        <div class="hw-name">ESP32</div>
+        <div class="hw-role">Cerebro y comunicador WiFi del sistema</div>
+        <ul class="hw-specs">
+          <li><span class="hk">Procesador</span><span class="hv">Xtensa LX6 240 MHz</span></li>
+          <li><span class="hk">WiFi</span><span class="hv">802.11 b/g/n 2.4 GHz</span></li>
+          <li><span class="hk">GPIO</span><span class="hv">34 pines programables</span></li>
+          <li><span class="hk">Flash</span><span class="hv">4 MB mínimo</span></li>
+          <li><span class="hk">Protocolo</span><span class="hv">MQTT + JSON</span></li>
+        </ul>
+        <div class="hw-price">
+          <span class="hp-l">Precio aprox.</span>
+          <span class="hp-v">$80 – $150 MXN</span>
+        </div>
+      </div>
+
+      <div class="hw-card rv d1">
+        <div class="hw-chip">Sensor de energía</div>
+        <div class="hw-name">PZEM-004T PZKHCT</div>
+        <div class="hw-role">Sensor AC de alta precisión con pinza CT</div>
+        <ul class="hw-specs">
+          <li><span class="hk">Voltaje AC</span><span class="hv">80–260 V ±0.5%</span></li>
+          <li><span class="hk">Corriente AC</span><span class="hv">0–100 A ±0.5%</span></li>
+          <li><span class="hk">Potencia</span><span class="hv">0–23 kW ±0.5%</span></li>
+          <li><span class="hk">Energía</span><span class="hv">0–9999.99 kWh</span></li>
+          <li><span class="hk">Interfaz</span><span class="hv">UART Modbus RTU</span></li>
+        </ul>
+        <div class="hw-price">
+          <span class="hp-l">Precio aprox.</span>
+          <span class="hp-v">$150 – $250 MXN</span>
+        </div>
+      </div>
+
+      <div class="hw-card rv d2">
+        <div class="hw-chip">Control</div>
+        <div class="hw-name">Relay 5V 2 Canales</div>
+        <div class="hw-role">Interruptor inteligente controlado por el ESP32</div>
+        <ul class="hw-specs">
+          <li><span class="hk">Carga máx.</span><span class="hv">10A 250VAC / 10A 30VDC</span></li>
+          <li><span class="hk">Canales</span><span class="hv">2 dispositivos independientes</span></li>
+          <li><span class="hk">Optoacoplador</span><span class="hv">Sí — protege el ESP32</span></li>
+          <li><span class="hk">GPIO Slimergy</span><span class="hv">GPIO26 / GPIO27</span></li>
+          <li><span class="hk">Latencia</span><span class="hv">&lt; 100 ms</span></li>
+        </ul>
+        <div class="hw-price">
+          <span class="hp-l">Precio aprox.</span>
+          <span class="hp-v">$55 MXN</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-bar rv">
+      <div style="text-align:center;margin-bottom:22px;">
+        <span class="tag" style="margin-bottom:0">Flujo de datos MQTT — latencia end-to-end ~2 segundos</span>
+      </div>
+      <div class="flow-nodes">
+        <div class="flow-node fn-g">
+          <div class="fn-emoji">⚡</div>
+          <div class="fn-label fnl-g">PZEM-004T</div>
+          <div class="fn-sub">Mide AC</div>
+        </div>
+        <div class="flow-line g"><span class="flow-line-label">UART / Serial</span></div>
+        <div class="flow-node fn-b">
+          <div class="fn-emoji">🔌</div>
+          <div class="fn-label fnl-b">ESP32</div>
+          <div class="fn-sub">WiFi + JSON</div>
+        </div>
+        <div class="flow-line b"><span class="flow-line-label">MQTT publish</span></div>
+        <div class="flow-node fn-d">
+          <div class="fn-emoji">☁️</div>
+          <div class="fn-label fnl-d">HiveMQ</div>
+          <div class="fn-sub">Broker cloud</div>
+        </div>
+        <div class="flow-line b"><span class="flow-line-label">&lt; 50ms</span></div>
+        <div class="flow-node fn-b">
+          <div class="fn-emoji">📱</div>
+          <div class="fn-label fnl-b">App Slimergy</div>
+          <div class="fn-sub">iOS & Android</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo" id="demo">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">Prototipo</div>
+      <h2 class="sec-title">El hardware en acción</h2>
+      <p class="sec-desc">ESP32 + PZEM-004T + Relay montados en carcasa para instalación doméstica. Aquí puedes ver el prototipo v1.0 de Slimergy.</p>
+    </div>
+
+    <div class="demo-grid">
+      <div class="proto-wrap rv">
+        <img src="assets/img/prototype.webp" alt="Prototipo Slimergy — ESP32 + PZEM-004T + Relay 5V" loading="lazy">
+        <div class="proto-grad"></div>
+        <div class="proto-border"></div>
+        <div class="proto-badge pb-top">ESP32 · PZEM-004T · Relay 5V</div>
+        <div class="proto-badge pb-bot">Prototipo v1.0 · Innovatec 2026</div>
+      </div>
+
+      <div class="demo-info rv d2">
+        <h3>Demo del sistema funcionando</h3>
+        <p>Mira el prototipo Slimergy en tiempo real: el sensor PZEM-004T midiendo la corriente AC, los datos fluyendo por WiFi al broker MQTT HiveMQ y la app React Native actualizándose automáticamente cada 2 segundos.</p>
+
+        <div class="vid-box">
+          <div class="vid-ph" id="vidPH">
+            <div class="play-btn" onclick="loadVideo()">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="vid-ph-text">Video del prototipo funcionando</div>
+            <div class="vid-ph-note">Ver README.md para agregar tu video de YouTube o mp4</div>
+          </div>
+        </div>
+
+        <div class="demo-checks">
+          <div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Actualización automática cada 2 segundos vía MQTT</div>
+          <div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Control ON/OFF del relay desde la app en &lt;100 ms</div>
+          <div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>App nativa para iOS y Android (React Native + Expo)</div>
+          <div class="dc"><svg viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Cálculo automático de tarifa CFE DAC 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="container">
+    <div class="sec-hdr center rv">
+      <div class="tag">El equipo</div>
+      <h2 class="sec-title">Los creadores de Slimergy</h2>
+      <p class="sec-desc">Un equipo de estudiantes mexicanos comprometidos con democratizar el monitoreo energético en hogares de todo México.</p>
+    </div>
+
+    <div class="team-photos">
+      <div class="tp rv">
+        <img src="assets/img/team-booth.webp" alt="Equipo Slimergy en Innovatec 2026" loading="lazy">
+        <div class="tp-cap">
+          <div class="tc-title">Innovatec 2026 — Exposición del prototipo</div>
+          <div class="tc-sub">Industria Eléctrica y Electrónica</div>
+        </div>
+      </div>
+      <div class="tp rv d2">
+        <img src="assets/img/team-cert.webp" alt="Equipo Slimergy con reconocimiento" loading="lazy">
+        <div class="tp-cap">
+          <div class="tc-title">Constancia de participación oficial</div>
+          <div class="tc-sub">Reconocimiento al proyecto Slimergy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-bar rv">
+      <span class="pill">ESP32</span>
+      <span class="pill">PZEM-004T</span>
+      <span class="pill">MQTT</span>
+      <span class="pill">React Native</span>
+      <span class="pill">TypeScript</span>
+      <span class="pill">Zustand</span>
+      <span class="pill">HiveMQ</span>
+      <span class="pill">Expo SDK 50</span>
+      <span class="pill">CFE DAC 2026</span>
+      <span class="pill">Arduino IDE</span>
+    </div>
+  </div>
+</section>
+
+<section class="ig-sec">
+  <div class="ig-inner">
+    <div class="ig-logo-box">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </div>
+    <h2 class="ig-h">Síguenos en Instagram</h2>
+    <p class="ig-handle">Demos, actualizaciones y más en <span>@slimergy_26</span></p>
+    <a href="https://www.instagram.com/slimergy_26/" target="_blank" rel="noopener" class="btn btn-ig" style="font-size:1rem;padding:15px 34px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Seguir @slimergy_26
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <img src="assets/img/logo.png" alt="Slimergy" class="ft-logo">
+        <p class="ft-tag">El poder de ahorrar empieza con medir. Sistema de monitoreo de energía inteligente para hogares mexicanos.</p>
+      </div>
+      <div>
+        <div class="ft-h">Navegación</div>
+        <ul class="ft-links">
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#caracteristicas">Características</a></li>
+          <li><a href="#hardware">Hardware</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#equipo">Equipo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-h">Contacto</div>
+        <ul class="ft-links">
+          <li><a href="https://www.instagram.com/slimergy_26/" target="_blank" rel="noopener">Instagram @slimergy_26</a></li>
+          <li><a href="#mision">Misión &amp; Visión</a></li>
+        </ul>
+        <div style="margin-top:20px">
+          <div class="ft-h">Stack técnico</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+            <span class="pill">ESP32</span>
+            <span class="pill">React Native</span>
+            <span class="pill">MQTT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2026 <span>Slimergy</span> · Proyecto Innovatec · Todos los derechos reservados</div>
+      <div class="ft-pills">
+        <span class="pill">TypeScript</span>
+        <span class="pill">Expo SDK 50</span>
+        <span class="pill">HiveMQ</span>
+        <span class="pill">CFE DAC 2026</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
