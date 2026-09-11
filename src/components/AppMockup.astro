@@ -1,0 +1,279 @@
+---
+// Dashboard interactivo de la App Slimergy (pantalla de inicio)
+---
+
+<div class="relative mx-auto w-full max-w-[340px] sm:max-w-[380px]">
+  <div class="absolute -inset-3 sm:-inset-4 bg-gradient-to-tr from-slimergy-green/20 to-slimergy-blue/15 rounded-[40px] sm:rounded-[48px] blur-2xl -z-10 pointer-events-none"></div>
+
+  <div class="phone-casing rounded-[38px] sm:rounded-[44px] p-2.5 sm:p-3 overflow-hidden transition-all duration-300">
+    <!-- Barra superior del teléfono simulado -->
+    <div class="w-full flex items-center justify-between px-4 sm:px-6 pt-1 sm:pt-2 pb-2.5 text-xs text-slate-400 dark:text-slate-500 font-medium">
+      <span>9:22</span>
+      <div class="w-16 sm:w-20 h-3.5 sm:h-4 bg-slate-200 dark:bg-[#1F293D] rounded-full mx-auto"></div>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 21l3.54-.93C9.33 20.65 10.63 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
+        <span>100%</span>
+      </div>
+    </div>
+
+    <div class="bg-slimergy-bg dark:bg-slimergy-app-bg rounded-[28px] sm:rounded-[32px] p-3.5 sm:p-4 flex flex-col gap-3 sm:gap-3.5 select-none transition-colors duration-300">
+      
+      <div class="flex items-center justify-between pt-1">
+        <h3 class="text-lg sm:text-xl font-extrabold text-slimergy-main dark:text-white tracking-tight">Hola, Slimergy</h3>
+        <div id="mockupLiveBadge" class="inline-flex items-center gap-1.5 bg-slimergy-dark dark:bg-slimergy-app-card text-white px-3 py-1 rounded-full text-[11px] font-bold border border-transparent dark:border-slimergy-app-border transition-all duration-300">
+          <span class="w-2 h-2 rounded-full bg-slimergy-green animate-live"></span>
+          <span id="mockupLiveText">En vivo</span>
+        </div>
+      </div>
+
+      <!-- Tarjeta principal de consumo actual -->
+      <div id="mockupMainCard" class="bg-slimergy-green rounded-[26px] p-5 text-slimergy-green-dark shadow-green-subtle relative overflow-hidden transition-all duration-300">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-bold text-sm text-slimergy-green-dark/85">Consumo actual</span>
+          <div class="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center">
+            <svg class="w-4 h-4 fill-current text-slimergy-green-dark" viewBox="0 0 24 24">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="my-3 flex items-baseline gap-1">
+          <span id="mockupWatts" class="text-5xl font-black tracking-tight text-slimergy-green-dark transition-all duration-300">
+            1000.0
+          </span>
+          <span class="text-2xl font-black text-slimergy-green-dark/80">W</span>
+        </div>
+
+        <div class="bg-black/10 backdrop-blur-md rounded-2xl p-2.5 flex items-center justify-between text-center divide-x divide-black/10">
+          <div class="flex-1 px-1">
+            <span class="block text-[10px] font-extrabold tracking-wider text-slimergy-green-dark/75">VOLTAJE</span>
+            <span id="mockupVolts" class="font-bold text-sm text-slimergy-green-dark">123.4 V</span>
+          </div>
+          <div class="flex-1 px-1">
+            <span class="block text-[10px] font-extrabold tracking-wider text-slimergy-green-dark/75">CORRIENTE</span>
+            <span id="mockupAmps" class="font-bold text-sm text-slimergy-green-dark">8.11 A</span>
+          </div>
+          <div class="flex-1 px-1">
+            <span class="block text-[10px] font-extrabold tracking-wider text-slimergy-green-dark/75">TOTAL KWH</span>
+            <span id="mockupKwh" class="font-bold text-sm text-slimergy-green-dark">5.42</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Métricas secundarias: costo estimado y dispositivos activos -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
+          <div class="w-10 h-10 rounded-xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center font-bold text-lg shrink-0">
+            $
+          </div>
+          <div>
+            <span class="block text-[11px] text-slimergy-muted dark:text-slimergy-app-muted font-semibold">Costo hoy</span>
+            <span id="mockupCost" class="text-base font-black text-slimergy-main dark:text-white">$25.20</span>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
+          <div class="w-10 h-10 rounded-xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 stroke-current fill-none stroke-[2.2]" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-[11px] text-slimergy-muted dark:text-slimergy-app-muted font-semibold">Activos</span>
+            <span id="mockupActiveCount" class="text-base font-black text-slimergy-main dark:text-white">2 disp.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfica semanal de consumo -->
+      <div class="bg-white dark:bg-slimergy-app-card rounded-[24px] p-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border transition-colors duration-200">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-slimergy-main dark:text-white">Consumo 7 días</span>
+          <span class="text-[10px] text-slimergy-muted dark:text-slimergy-app-muted font-semibold">kWh diarios</span>
+        </div>
+
+        <div class="relative h-24 flex items-end justify-between px-2 pt-2 border-b border-gray-100 dark:border-slimergy-app-border/70">
+          <div class="absolute inset-x-0 top-1/4 border-t border-gray-100/80 dark:border-slimergy-app-border/40 -z-0"></div>
+          <div class="absolute inset-x-0 top-2/4 border-t border-gray-100/80 dark:border-slimergy-app-border/40 -z-0"></div>
+          <div class="absolute inset-x-0 top-3/4 border-t border-gray-100/80 dark:border-slimergy-app-border/40 -z-0"></div>
+
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/30 border-t-2 border-slimergy-green rounded-t-sm" style="height: 38px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">L</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/30 border-t-2 border-slimergy-green rounded-t-sm" style="height: 48px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">M</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/30 border-t-2 border-slimergy-green rounded-t-sm" style="height: 64px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">M</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/30 border-t-2 border-slimergy-green rounded-t-sm" style="height: 30px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">J</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/40 border-t-2 border-slimergy-green rounded-t-sm" style="height: 58px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">V</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div id="mockupTodayBar" class="w-3 bg-slimergy-green border-t-2 border-slimergy-green-dark rounded-t-sm transition-all duration-500" style="height: 60px;"></div>
+            <span class="text-[9px] font-black text-slimergy-main dark:text-white">S</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 z-10 w-6">
+            <div class="w-3 bg-slimergy-green/40 border-t-2 border-slimergy-green rounded-t-sm" style="height: 68px;"></div>
+            <span class="text-[9px] font-bold text-slimergy-muted dark:text-slimergy-app-muted">D</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de navegación inferior de la app -->
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl py-2 px-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center justify-between text-center transition-colors duration-200">
+        <a href="#top" class="flex flex-col items-center gap-0.5 text-slimergy-green">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span class="text-[9px] font-black">Inicio</span>
+        </a>
+        <a href="#cuartos-demo" class="flex flex-col items-center gap-0.5 text-slate-400 dark:text-slimergy-app-muted hover:text-slimergy-main dark:hover:text-white transition-colors">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span class="text-[9px] font-semibold">Cuartos</span>
+        </a>
+        <a href="#tarifa-cfe" class="flex flex-col items-center gap-0.5 text-slate-400 dark:text-slimergy-app-muted hover:text-slimergy-main dark:hover:text-white transition-colors">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span class="text-[9px] font-semibold">Costos</span>
+        </a>
+        <a href="#app-showcase" class="flex flex-col items-center gap-0.5 text-slate-400 dark:text-slimergy-app-muted hover:text-slimergy-main dark:hover:text-white transition-colors">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span class="text-[9px] font-semibold">Config</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Sincronización en tiempo real de la App Slimergy con el Simulador de Cuartos
+  let targetWatts = 1000.0;
+  let currentWatts = 1000.0;
+  let activeCount = 2;
+  let animationFrameId: number | null = null;
+  let syncTimeoutId: number | null = null;
+
+  const wattsEl = document.getElementById('mockupWatts');
+  const voltsEl = document.getElementById('mockupVolts');
+  const ampsEl = document.getElementById('mockupAmps');
+  const costEl = document.getElementById('mockupCost');
+  const kwhEl = document.getElementById('mockupKwh');
+  const activeCountEl = document.getElementById('mockupActiveCount');
+  const mainCard = document.getElementById('mockupMainCard');
+  const liveBadge = document.getElementById('mockupLiveBadge');
+  const liveText = document.getElementById('mockupLiveText');
+  const todayBar = document.getElementById('mockupTodayBar');
+
+  // Actualizar valores en pantalla según los watts actuales
+  function renderMetrics(w: number) {
+    if (wattsEl) {
+      wattsEl.textContent = w.toFixed(1);
+    }
+    const volts = 123.0 + (Math.random() - 0.5) * 1.2;
+    const amps = w > 0 ? (w / volts) : 0;
+
+    if (voltsEl) voltsEl.textContent = volts.toFixed(1) + ' V';
+    if (ampsEl) ampsEl.textContent = amps.toFixed(2) + ' A';
+
+    // Proyección de costo diario según tarifa CFE ($1.05 MXN base)
+    const dailyKwh = (w * 24) / 1000;
+    const costToday = dailyKwh * 1.05;
+    if (costEl) costEl.textContent = '$' + costToday.toFixed(2);
+    if (kwhEl) kwhEl.textContent = dailyKwh.toFixed(2);
+
+    // Ajustar proporcionalmente la barra del día actual en la gráfica
+    if (todayBar) {
+      const minHeight = 12;
+      const maxHeight = 84;
+      const barH = w === 0 ? minHeight : Math.min(maxHeight, Math.max(minHeight, (w / 3200) * maxHeight));
+      todayBar.style.height = `${barH.toFixed(0)}px`;
+    }
+  }
+
+  // Transición suave de números de consumo
+  function smoothTransitionTo(newTarget: number) {
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+    const startWatts = currentWatts;
+    const endWatts = newTarget;
+    const duration = 400;
+    const startTime = performance.now();
+
+    function step(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      currentWatts = startWatts + (endWatts - startWatts) * ease;
+      renderMetrics(currentWatts);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else {
+        currentWatts = endWatts;
+        renderMetrics(currentWatts);
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(step);
+  }
+
+  // Escuchar eventos de actualización de habitaciones y electrodomésticos
+  window.addEventListener('slimergy-rooms-sync', (e: any) => {
+    const data = e.detail;
+    if (!data) return;
+
+    targetWatts = typeof data.totalWatts === 'number' ? data.totalWatts : 0;
+    activeCount = typeof data.activeCount === 'number' ? data.activeCount : 0;
+
+    if (activeCountEl) {
+      activeCountEl.textContent = `${activeCount} disp.`;
+    }
+
+    // Efecto visual sutil de pulso en la tarjeta al actualizarse
+    if (mainCard) {
+      mainCard.classList.add('ring-4', 'ring-white/40', 'scale-[1.01]');
+      setTimeout(() => {
+        mainCard.classList.remove('ring-4', 'ring-white/40', 'scale-[1.01]');
+      }, 350);
+    }
+
+    // Indicador dinámico en la cabecera del teléfono
+    if (liveText && liveBadge) {
+      if (syncTimeoutId) clearTimeout(syncTimeoutId);
+      if (data.lastToggled) {
+        liveText.textContent = data.isOn ? `+ ${data.lastToggled.slice(0, 8)}` : `- ${data.lastToggled.slice(0, 8)}`;
+      } else {
+        liveText.textContent = 'En vivo';
+      }
+      syncTimeoutId = window.setTimeout(() => {
+        if (liveText) liveText.textContent = 'En vivo';
+      }, 1600);
+    }
+
+    smoothTransitionTo(targetWatts);
+  });
+
+  // Micro-fluctuación realista cada 2 segundos simulando la telemetría del sensor PZEM-004T
+  setInterval(() => {
+    if (targetWatts <= 0) {
+      renderMetrics(0);
+      return;
+    }
+    const jitter = (Math.random() - 0.5) * (targetWatts * 0.016);
+    const liveWatts = Math.max(1, targetWatts + jitter);
+    renderMetrics(liveWatts);
+  }, 2000);
+
+  // Solicitar estado inicial al simulador de cuartos al montar
+  window.dispatchEvent(new CustomEvent('slimergy-request-rooms-state'));
+</script>

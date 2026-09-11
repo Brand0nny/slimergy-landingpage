@@ -1,0 +1,163 @@
+---
+// Vistas principales de la aplicación Slimergy (capturas reales)
+---
+
+<section class="py-12 sm:py-24 md:py-32 bg-white dark:bg-slimergy-app-bg relative overflow-hidden transition-colors duration-300" id="app-showcase">
+  <div class="absolute top-0 right-0 w-96 h-96 bg-slimergy-green/10 dark:bg-slimergy-green/5 rounded-full blur-3xl pointer-events-none -z-0"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-slimergy-blue/10 dark:bg-slimergy-blue/5 rounded-full blur-3xl pointer-events-none -z-0"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 reveal-init">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slimergy-main dark:text-white tracking-tight mb-4 sm:mb-5">
+        Una interfaz intuitiva, diseñada para <span class="text-slimergy-green">tomar el control</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slimergy-muted dark:text-slimergy-app-muted font-medium">
+        Inspirada en la simplicidad y el alto contraste. Descubre las vistas principales de la app Slimergy en modo claro y modo oscuro.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 lg:gap-10">
+      
+      <!-- Vista 1: Inicio / Dashboard -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-5 sm:p-7 border border-slimergy-border dark:border-slimergy-app-border shadow-app hover:shadow-app-hover transition-all duration-300 flex flex-col justify-between group reveal-init">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-slimergy-main dark:text-white mb-2">Dashboard en Tiempo Real</h3>
+          <p class="text-sm text-slimergy-muted dark:text-slimergy-app-muted font-medium mb-6">
+            Visualiza en una tarjeta verde esmeralda los Watts actuales, Voltaje de red, Corriente en Amperes y costo en pesos al centavo.
+          </p>
+        </div>
+
+        <!-- Capturas de pantalla (modo claro y oscuro) -->
+        <div class="relative mx-auto rounded-[32px] overflow-hidden shadow-2xl border-4 border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 group-hover:scale-[1.02] transition-transform duration-300">
+          <img 
+            src="/assets/img/app-screen-home.jpeg" 
+            alt="Slimergy App - Pantalla de Inicio en Modo Claro" 
+            class="screenshot-light w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+          <img 
+            src="/assets/img/app-screen-home-dark.jpeg" 
+            alt="Slimergy App - Pantalla de Inicio en Modo Oscuro" 
+            class="screenshot-dark w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-slimergy-border/80 dark:border-slimergy-app-border/70 flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Monitoreo instantáneo en Watts y Volts</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Cálculo diario de costo en pesos mexicanos</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Gráfica de consumo de los últimos 7 días</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista 2: Cuartos / Control individual -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-5 sm:p-7 border border-slimergy-border dark:border-slimergy-app-border shadow-app hover:shadow-app-hover transition-all duration-300 flex flex-col justify-between group reveal-init reveal-d1">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-slimergy-main dark:text-white mb-2">Control por Habitaciones</h3>
+          <p class="text-xs sm:text-sm text-slimergy-muted dark:text-slimergy-app-muted font-medium mb-6">
+            Segmenta tu hogar por estancias (Sala, Cocina, Recámara). Las tarjetas destacan dispositivos activos con su consumo individual.
+          </p>
+        </div>
+
+        <div class="relative mx-auto rounded-2xl sm:rounded-[32px] overflow-hidden shadow-2xl border-4 border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 group-hover:scale-[1.02] transition-transform duration-300">
+          <img 
+            src="/assets/img/app-screen-rooms.jpeg" 
+            alt="Slimergy App - Pantalla de Cuartos en Modo Claro" 
+            class="screenshot-light w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+          <img 
+            src="/assets/img/app-screen-rooms-dark.jpeg" 
+            alt="Slimergy App - Pantalla de Cuartos en Modo Oscuro" 
+            class="screenshot-dark w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-slimergy-border/80 dark:border-slimergy-app-border/70 flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Tarjetas de alto contraste para aparatos ON</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Toggles con respuesta física de relay en &lt;100 ms</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Filtros rápidos: Sala, Cocina, Recámara</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista 3: Configuración y Tópicos MQTT -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-5 sm:p-7 border border-slimergy-border dark:border-slimergy-app-border shadow-app hover:shadow-app-hover transition-all duration-300 flex flex-col justify-between group reveal-init reveal-d2">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-slimergy-main dark:text-white mb-2">Configuración & Tópicos IoT</h3>
+          <p class="text-xs sm:text-sm text-slimergy-muted dark:text-slimergy-app-muted font-medium mb-6">
+            Personaliza el tema visual (Claro, Oscuro o Sistema), gestiona tu perfil y supervisa los tópicos MQTT suscritos al broker en tiempo real.
+          </p>
+        </div>
+
+        <div class="relative mx-auto rounded-2xl sm:rounded-[32px] overflow-hidden shadow-2xl border-4 border-slate-100 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 group-hover:scale-[1.02] transition-transform duration-300">
+          <img 
+            src="/assets/img/app-screen-config.jpeg" 
+            alt="Slimergy App - Pantalla de Configuración en Modo Claro" 
+            class="screenshot-light w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+          <img 
+            src="/assets/img/app-screen-config-dark.jpeg" 
+            alt="Slimergy App - Pantalla de Configuración en Modo Oscuro" 
+            class="screenshot-dark w-full h-auto max-h-[320px] sm:max-h-[480px] object-cover object-top"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-slimergy-border/80 dark:border-slimergy-app-border/70 flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Selector de apariencia: Claro, Oscuro y Sistema</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Monitoreo de tópicos HiveMQ (#smartwatt/...)</span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-bold text-slimergy-main dark:text-white">
+            <div class="w-5 h-5 rounded-full bg-slimergy-green-light dark:bg-slimergy-green/20 text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-3 h-3 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Perfil de usuario y métricas de plataforma</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,193 @@
+---
+// Calculadora de proyección de consumo CFE y tarifa DAC
+---
+
+<section class="py-12 sm:py-24 md:py-32 bg-slimergy-bg dark:bg-slimergy-app-bg relative overflow-hidden transition-colors duration-200" id="tarifa-cfe">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 reveal-init">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slimergy-main dark:text-white tracking-tight mb-4 sm:mb-5">
+        Evita sorpresas y no caigas en <span class="text-rose-500">Tarifa DAC</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slimergy-muted dark:text-slimergy-app-muted font-medium">
+        En México, superar el límite de consumo bimestral elimina los subsidios gubernamentales y dispara tu recibo de CFE. Simula tu gasto actual aquí:
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white dark:bg-slimergy-app-card rounded-3xl sm:rounded-[40px] p-4 sm:p-8 md:p-12 shadow-app dark:shadow-none border border-slimergy-border dark:border-slimergy-app-border reveal-init transition-colors duration-200">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-center">
+        
+        <!-- Controles de selección de kWh -->
+        <div class="lg:col-span-6 space-y-4 sm:space-y-6 reveal-init">
+          <div>
+            <div class="flex justify-between items-center mb-1.5 sm:mb-2">
+              <label for="kwh-range" class="text-xs sm:text-sm font-extrabold text-slimergy-main dark:text-white">
+                Consumo diario estimado:
+              </label>
+              <span class="text-lg sm:text-xl font-black text-emerald-600 dark:text-slimergy-green">
+                <span id="calc-kwh-display">8.5</span> kWh / día
+              </span>
+            </div>
+            
+            <input 
+              type="range" 
+              id="kwh-range" 
+              min="2" 
+              max="25" 
+              step="0.5" 
+              value="8.5" 
+              class="w-full cursor-pointer my-1 sm:my-2"
+            />
+            
+            <div class="flex justify-between text-[10px] sm:text-[11px] text-slimergy-muted dark:text-slimergy-app-muted font-semibold mt-1.5 sm:mt-2">
+              <span>Bajo (2 kWh)</span>
+              <span>Promedio (8-12 kWh)</span>
+              <span>Alto (25 kWh)</span>
+            </div>
+          </div>
+
+          <!-- Resumen bimestral y alerta de tarifa DAC -->
+          <div class="bg-slimergy-bg dark:bg-slimergy-app-sub rounded-2xl p-3 sm:p-4 border border-slimergy-border dark:border-slimergy-app-border transition-colors duration-200">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] sm:text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted uppercase tracking-wider">Proyección Bimestral:</span>
+              <div class="flex items-baseline gap-1.5">
+                <span id="calc-bimonthly-kwh" class="text-xl sm:text-2xl font-black text-slimergy-main dark:text-white">510</span>
+                <span class="text-[11px] sm:text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted">kWh / 60 días</span>
+              </div>
+            </div>
+            <p id="calc-threshold-alert" class="text-xs font-bold text-amber-600 dark:text-amber-400 mt-2 flex items-center gap-1.5">
+              <svg class="w-4 h-4 stroke-current fill-none stroke-2 shrink-0" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <span>Te encuentras cerca del umbral de Tarifa DAC (500 kWh/bimestre).</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta de proyección de recibo -->
+        <div class="lg:col-span-6 reveal-init reveal-d1">
+          <div class="bg-slimergy-dark-card dark:bg-slimergy-app-sub text-white rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 border border-slimergy-dark-border dark:border-slimergy-app-border shadow-dark-float relative overflow-hidden transition-colors duration-200">
+            <div class="flex items-center justify-between mb-3 sm:mb-5">
+              <span class="text-[11px] sm:text-xs font-black uppercase tracking-wider text-slimergy-green">Proyección Recibo CFE</span>
+              <div class="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-slate-300 bg-white/10 px-2.5 py-0.5 sm:py-1 rounded-full">
+                Bimestre
+              </div>
+            </div>
+
+            <div class="mb-3 sm:mb-5">
+              <span class="text-[11px] sm:text-xs font-bold text-slate-400 dark:text-slimergy-app-muted block mb-0.5 sm:mb-1">TOTAL ESTIMADO A PAGAR</span>
+              <div class="flex items-baseline gap-2">
+                <span id="calc-cost-display" class="text-3xl sm:text-5xl font-black text-white">$1,142</span>
+                <span class="text-base sm:text-lg font-bold text-slimergy-green">MXN</span>
+              </div>
+            </div>
+
+            <!-- Estimación de ahorro con Slimergy -->
+            <div class="bg-slimergy-green text-slimergy-green-dark rounded-xl sm:rounded-2xl p-3 sm:p-4 flex items-center justify-between shadow-sm">
+              <div>
+                <span class="block text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-slimergy-green-dark/75">
+                  Ahorro con Slimergy (-25%)
+                </span>
+                <span id="calc-savings-display" class="text-lg sm:text-xl font-black text-slimergy-green-dark">
+                  -$285 MXN
+                </span>
+              </div>
+              <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/10 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 stroke-slimergy-green-dark fill-none stroke-[2.5]" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+
+            <p class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slimergy-app-muted mt-3 sm:mt-4 leading-normal">
+              Al identificar cargas vampiro y apagar cuartos a tiempo, los usuarios de Slimergy evitan el salto a tarifas punitivas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-400 font-medium text-center mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slimergy-border/60 dark:border-slimergy-app-border">
+        * Cálculo estimado según estructura escalonada CFE (Básico: $1.05, Intermedio: $1.28, Excedente: $3.75, DAC: $6.20 por kWh + IVA).
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Cálculo dinámico de costo bimestral según escalones de CFE
+  const rangeInput = document.getElementById('kwh-range') as HTMLInputElement;
+  const kwhDisplay = document.getElementById('calc-kwh-display');
+  const bimonthlyDisplay = document.getElementById('calc-bimonthly-kwh');
+  const thresholdAlert = document.getElementById('calc-threshold-alert');
+  const costDisplay = document.getElementById('calc-cost-display');
+  const savingsDisplay = document.getElementById('calc-savings-display');
+
+  function calculateCFE() {
+    if (!rangeInput) return;
+    const dailyKwh = parseFloat(rangeInput.value);
+    const min = parseFloat(rangeInput.min) || 2;
+    const max = parseFloat(rangeInput.max) || 25;
+    const pct = ((dailyKwh - min) / (max - min)) * 100;
+    rangeInput.style.setProperty('--range-progress', `${pct}%`);
+
+    const bimonthlyKwh = dailyKwh * 60;
+
+    if (kwhDisplay) kwhDisplay.textContent = dailyKwh.toFixed(1);
+    if (bimonthlyDisplay) bimonthlyDisplay.textContent = Math.round(bimonthlyKwh).toString();
+
+    let cost = 0;
+    const isDAC = bimonthlyKwh > 500;
+
+    if (isDAC) {
+      // Tarifa DAC directa sin subsidio (~$6.20 por kWh + cargo fijo)
+      cost = 145 + bimonthlyKwh * 6.20;
+      if (thresholdAlert) {
+        thresholdAlert.className = 'text-xs font-bold text-rose-600 dark:text-rose-400 mt-2 flex items-center gap-1.5';
+        thresholdAlert.innerHTML = `
+          <svg class="w-4 h-4 stroke-current fill-none stroke-2 shrink-0" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01" />
+          </svg>
+          <span>¡PELIGRO! Consumo superior a 500 kWh: Tarifa DAC aplicada sin subsidio.</span>
+        `;
+      }
+    } else {
+      // Escalonado estándar: Básico (150 kWh a 1.05), Intermedio (130 kWh a 1.28), Excedente (resto a 3.75)
+      const basico = Math.min(bimonthlyKwh, 150);
+      const intermedio = Math.min(Math.max(bimonthlyKwh - 150, 0), 130);
+      const excedente = Math.max(bimonthlyKwh - 280, 0);
+
+      cost = (basico * 1.05) + (intermedio * 1.28) + (excedente * 3.75);
+
+      if (thresholdAlert) {
+        if (bimonthlyKwh > 400) {
+          thresholdAlert.className = 'text-xs font-bold text-amber-600 dark:text-amber-400 mt-2 flex items-center gap-1.5';
+          thresholdAlert.innerHTML = `
+            <svg class="w-4 h-4 stroke-current fill-none stroke-2 shrink-0" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>Alerta: Te encuentras a menos de 100 kWh de caer en Tarifa DAC.</span>
+          `;
+        } else {
+          thresholdAlert.className = 'text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-2 flex items-center gap-1.5';
+          thresholdAlert.innerHTML = `
+            <svg class="w-4 h-4 stroke-current fill-none stroke-2 shrink-0" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Consumo dentro de rangos con subsidio CFE.</span>
+          `;
+        }
+      }
+    }
+
+    const estimatedSavings = cost * 0.25;
+
+    if (costDisplay) costDisplay.textContent = '$' + Math.round(cost).toLocaleString('es-MX');
+    if (savingsDisplay) savingsDisplay.textContent = '-$' + Math.round(estimatedSavings).toLocaleString('es-MX') + ' MXN';
+  }
+
+  rangeInput?.addEventListener('input', calculateCFE);
+  calculateCFE();
+</script>

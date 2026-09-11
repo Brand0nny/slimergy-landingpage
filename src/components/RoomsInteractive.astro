@@ -1,0 +1,352 @@
+---
+// Simulador interactivo de control de aparatos por habitación
+---
+
+<section class="py-12 sm:py-24 md:py-32 bg-slimergy-bg dark:bg-slimergy-app-bg relative overflow-hidden transition-colors duration-200" id="cuartos-demo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 reveal-init">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slimergy-main dark:text-white tracking-tight mb-4 sm:mb-5">
+        Experimenta el control por cuartos <span class="text-slimergy-green">en vivo</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slimergy-muted dark:text-slimergy-app-muted font-medium">
+        Toca los interruptores para encender o apagar electrodomésticos. Observa cómo cambia la apariencia de las tarjetas y cómo se recalculan los Watts y el costo en tiempo real.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white dark:bg-slimergy-app-card rounded-3xl sm:rounded-[40px] p-4 sm:p-8 md:p-10 shadow-app dark:shadow-none border border-slimergy-border dark:border-slimergy-app-border reveal-init transition-colors duration-200">
+      
+      <div class="flex items-center justify-between pb-4 sm:pb-6 border-b border-slimergy-border dark:border-slimergy-app-border mb-6 sm:mb-8">
+        <div>
+          <h3 class="text-2xl sm:text-3xl font-black text-slimergy-main dark:text-white">Cuartos</h3>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button 
+            type="button" 
+            class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green text-slimergy-green-dark flex items-center justify-center hover:bg-slimergy-green-hover transition-transform hover:scale-105 shadow-green-subtle font-black text-xl sm:text-2xl"
+            title="Agregar dispositivo"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <!-- Métricas en vivo del simulador -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-sub rounded-2xl sm:rounded-3xl p-3 sm:p-5 mb-6 sm:mb-8 border border-slimergy-border dark:border-slimergy-app-border grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center transition-colors duration-200">
+        <div class="bg-white dark:bg-slimergy-app-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-sm border border-slimergy-border/60 dark:border-slimergy-app-border transition-colors duration-200">
+          <span class="block text-[11px] sm:text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted mb-0.5 sm:mb-1">CARGA ACTIVA TOTAL</span>
+          <div class="flex items-baseline justify-center gap-1">
+            <span id="sim-total-watts" class="text-2xl sm:text-3xl font-black text-slimergy-green-dark dark:text-slimergy-green">1,000</span>
+            <span class="text-sm sm:text-base font-bold text-slimergy-muted dark:text-slimergy-app-muted">W</span>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slimergy-app-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-sm border border-slimergy-border/60 dark:border-slimergy-app-border transition-colors duration-200">
+          <span class="block text-[11px] sm:text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted mb-0.5 sm:mb-1">DISPOSITIVOS ON</span>
+          <div class="flex items-baseline justify-center gap-1">
+            <span id="sim-active-count" class="text-2xl sm:text-3xl font-black text-slimergy-main dark:text-white">2</span>
+            <span class="text-sm sm:text-base font-bold text-slimergy-muted dark:text-slimergy-app-muted">/ 5 activos</span>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-slimergy-app-card rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-sm border border-slimergy-border/60 dark:border-slimergy-app-border transition-colors duration-200">
+          <span class="block text-[11px] sm:text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted mb-0.5 sm:mb-1">COSTO ESTIMADO / HORA</span>
+          <div class="flex items-baseline justify-center gap-1">
+            <span id="sim-hourly-cost" class="text-2xl sm:text-3xl font-black text-slimergy-main dark:text-white">$1.05</span>
+            <span class="text-xs font-bold text-slimergy-muted dark:text-slimergy-app-muted">MXN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtros por habitación -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 sm:mb-8 scrollbar-none" id="room-filters">
+        <button 
+          data-filter="all" 
+          class="room-pill active-pill px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-200 bg-slimergy-dark dark:bg-slimergy-green text-white dark:text-slimergy-dark shadow-sm shrink-0"
+        >
+          Todos
+        </button>
+        <button 
+          data-filter="sala" 
+          class="room-pill px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 bg-white dark:bg-slimergy-app-sub text-slimergy-muted dark:text-slimergy-app-muted border border-slimergy-border dark:border-slimergy-app-border hover:border-slate-400 dark:hover:border-slate-600 shrink-0"
+        >
+          Sala
+        </button>
+        <button 
+          data-filter="cocina" 
+          class="room-pill px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 bg-white dark:bg-slimergy-app-sub text-slimergy-muted dark:text-slimergy-app-muted border border-slimergy-border dark:border-slimergy-app-border hover:border-slate-400 dark:hover:border-slate-600 shrink-0"
+        >
+          Cocina
+        </button>
+        <button 
+          data-filter="recamara" 
+          class="room-pill px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 bg-white dark:bg-slimergy-app-sub text-slimergy-muted dark:text-slimergy-app-muted border border-slimergy-border dark:border-slimergy-app-border hover:border-slate-400 dark:hover:border-slate-600 shrink-0"
+        >
+          Recámara
+        </button>
+      </div>
+
+      <!-- Tarjetas de electrodomésticos -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5" id="devices-container">
+        <div 
+          class="device-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 transition-all duration-300 shadow-sm cursor-pointer select-none border"
+          data-room="sala" 
+          data-watts="150" 
+          data-name="Smart TV / Consola"
+          data-active="true"
+        >
+          <div class="flex items-center justify-between mb-3 sm:mb-8">
+            <span class="device-name font-black text-xs sm:text-lg tracking-tight truncate max-w-[85px] sm:max-w-none">Smart TV...</span>
+            <div class="device-toggle w-11 sm:w-12 h-6 sm:h-7 rounded-full bg-slimergy-green p-0.5 sm:p-1 transition-colors duration-200 ease-in-out relative flex items-center shrink-0">
+              <div class="toggle-thumb w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 ease-in-out pointer-events-none translate-x-5"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between pt-1">
+            <span class="device-room text-[11px] sm:text-sm font-semibold text-slate-400 dark:text-slimergy-app-muted">Sala</span>
+            <span class="device-watts font-black text-sm sm:text-xl text-slimergy-green">150 W</span>
+          </div>
+        </div>
+
+        <div 
+          class="device-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 transition-all duration-300 shadow-sm cursor-pointer select-none border"
+          data-room="cocina" 
+          data-watts="850" 
+          data-name="Refrigerador Inverter"
+          data-active="true"
+        >
+          <div class="flex items-center justify-between mb-3 sm:mb-8">
+            <span class="device-name font-black text-xs sm:text-lg tracking-tight truncate max-w-[85px] sm:max-w-none">Refrig...</span>
+            <div class="device-toggle w-11 sm:w-12 h-6 sm:h-7 rounded-full bg-slimergy-green p-0.5 sm:p-1 transition-colors duration-200 ease-in-out relative flex items-center shrink-0">
+              <div class="toggle-thumb w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 ease-in-out pointer-events-none translate-x-5"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between pt-1">
+            <span class="device-room text-[11px] sm:text-sm font-semibold text-slate-400 dark:text-slimergy-app-muted">Cocina</span>
+            <span class="device-watts font-black text-sm sm:text-xl text-slimergy-green">850 W</span>
+          </div>
+        </div>
+
+        <div 
+          class="device-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 transition-all duration-300 shadow-sm cursor-pointer select-none border"
+          data-room="sala" 
+          data-watts="30" 
+          data-name="Lámpara Sala"
+          data-active="false"
+        >
+          <div class="flex items-center justify-between mb-3 sm:mb-8">
+            <span class="device-name font-black text-xs sm:text-lg tracking-tight truncate max-w-[85px] sm:max-w-none">Lámpa...</span>
+            <div class="device-toggle w-11 sm:w-12 h-6 sm:h-7 rounded-full bg-slate-200 dark:bg-slate-700 p-0.5 sm:p-1 transition-colors duration-200 ease-in-out relative flex items-center shrink-0">
+              <div class="toggle-thumb w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 ease-in-out pointer-events-none translate-x-0"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between pt-1">
+            <span class="device-room text-[11px] sm:text-sm font-semibold text-slate-400 dark:text-slimergy-app-muted">Sala</span>
+            <span class="device-watts font-black text-sm sm:text-xl text-slate-400 dark:text-slate-500">0 W</span>
+          </div>
+        </div>
+
+        <div 
+          class="device-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 transition-all duration-300 shadow-sm cursor-pointer select-none border"
+          data-room="cocina" 
+          data-watts="1100" 
+          data-name="Microondas"
+          data-active="false"
+        >
+          <div class="flex items-center justify-between mb-3 sm:mb-8">
+            <span class="device-name font-black text-xs sm:text-lg tracking-tight truncate max-w-[85px] sm:max-w-none">Microo...</span>
+            <div class="device-toggle w-11 sm:w-12 h-6 sm:h-7 rounded-full bg-slate-200 dark:bg-slate-700 p-0.5 sm:p-1 transition-colors duration-200 ease-in-out relative flex items-center shrink-0">
+              <div class="toggle-thumb w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 ease-in-out pointer-events-none translate-x-0"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between pt-1">
+            <span class="device-room text-[11px] sm:text-sm font-semibold text-slate-400 dark:text-slimergy-app-muted">Cocina</span>
+            <span class="device-watts font-black text-sm sm:text-xl text-slate-400 dark:text-slate-500">0 W</span>
+          </div>
+        </div>
+
+        <div 
+          class="device-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 transition-all duration-300 shadow-sm cursor-pointer select-none border"
+          data-room="recamara" 
+          data-watts="950" 
+          data-name="Aire Acondicionado"
+          data-active="false"
+        >
+          <div class="flex items-center justify-between mb-3 sm:mb-8">
+            <span class="device-name font-black text-xs sm:text-lg tracking-tight truncate max-w-[85px] sm:max-w-none">Aire Ac.</span>
+            <div class="device-toggle w-11 sm:w-12 h-6 sm:h-7 rounded-full bg-slate-200 dark:bg-slate-700 p-0.5 sm:p-1 transition-colors duration-200 ease-in-out relative flex items-center shrink-0">
+              <div class="toggle-thumb w-5 h-5 rounded-full bg-white shadow-md transform transition-transform duration-200 ease-in-out pointer-events-none translate-x-0"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline justify-between pt-1">
+            <span class="device-room text-[11px] sm:text-sm font-semibold text-slate-400 dark:text-slimergy-app-muted">Recámara</span>
+            <span class="device-watts font-black text-sm sm:text-xl text-slate-400 dark:text-slate-500">0 W</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-slimergy-border dark:border-slimergy-app-border flex items-center justify-between flex-wrap gap-3 sm:gap-4 text-[11px] sm:text-xs font-semibold text-slimergy-muted dark:text-slimergy-app-muted">
+        <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          <span class="w-2.5 h-2.5 rounded-full bg-slimergy-dark-card dark:bg-slimergy-green border border-slate-700"></span>
+          <span class="dark:text-white">ON</span>
+          <span class="w-2.5 h-2.5 rounded-full bg-white dark:bg-slimergy-app-sub border border-slate-300 dark:border-slate-600 ml-2 sm:ml-3"></span>
+          <span class="dark:text-slate-400">OFF</span>
+        </div>
+        <div class="text-slimergy-green-dark dark:text-slimergy-green font-bold flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 fill-current text-slimergy-green" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span>Latencia MQTT HiveMQ &lt; 100 ms</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .device-card[data-active="true"] {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    border-color: #2e384d;
+  }
+  :global(html.dark) .device-card[data-active="true"] {
+    background-color: #1C2940;
+    color: #ffffff;
+    border-color: rgba(0, 223, 109, 0.45);
+    box-shadow: 0 0 20px rgba(0, 223, 109, 0.12);
+  }
+  .device-card[data-active="false"] {
+    background-color: #ffffff;
+    color: #111827;
+    border-color: #e2e8f0;
+  }
+  :global(html.dark) .device-card[data-active="false"] {
+    background-color: #101928;
+    color: #8E9EB5;
+    border-color: #223049;
+  }
+</style>
+
+<script>
+  // Lógica del simulador: cálculo de potencia total y estado ON/OFF
+  const deviceCards = document.querySelectorAll('.device-card');
+  const filterPills = document.querySelectorAll('.room-pill');
+  const totalWattsEl = document.getElementById('sim-total-watts');
+  const activeCountEl = document.getElementById('sim-active-count');
+  const hourlyCostEl = document.getElementById('sim-hourly-cost');
+
+  function updateTotals(lastToggledName?: string, isToggledOn?: boolean) {
+    let totalW = 0;
+    let activeN = 0;
+    const activeNames: string[] = [];
+
+    deviceCards.forEach(card => {
+      const isActive = card.getAttribute('data-active') === 'true';
+      const nominalWatts = parseFloat(card.getAttribute('data-watts') || '0');
+      const name = card.getAttribute('data-name') || '';
+      if (isActive) {
+        totalW += nominalWatts;
+        activeN++;
+        activeNames.push(name);
+      }
+    });
+
+    if (totalWattsEl) totalWattsEl.textContent = totalW.toLocaleString('es-MX');
+    if (activeCountEl) activeCountEl.textContent = activeN.toString();
+    if (hourlyCostEl) {
+      // Costo aproximado por kWh según tarifa base CFE ($1.05 MXN)
+      const cost = (totalW / 1000) * 1.05;
+      hourlyCostEl.textContent = '$' + cost.toFixed(2);
+    }
+
+    // Emitir evento para sincronizar con la maqueta del inicio (Hero)
+    window.dispatchEvent(new CustomEvent('slimergy-rooms-sync', {
+      detail: {
+        totalWatts: totalW,
+        activeCount: activeN,
+        activeNames: activeNames,
+        totalDevices: deviceCards.length,
+        lastToggled: lastToggledName,
+        isOn: isToggledOn
+      }
+    }));
+  }
+
+  // Alternar encendido/apagado al hacer clic en una tarjeta
+  deviceCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const currentActive = card.getAttribute('data-active') === 'true';
+      const nextActive = !currentActive;
+      const nominalWatts = card.getAttribute('data-watts');
+      const deviceName = card.getAttribute('data-name') || '';
+      card.setAttribute('data-active', nextActive ? 'true' : 'false');
+
+      const toggle = card.querySelector('.device-toggle');
+      const thumb = card.querySelector('.toggle-thumb');
+      const wattsText = card.querySelector('.device-watts');
+
+      if (nextActive) {
+        toggle?.classList.remove('bg-slate-200', 'dark:bg-slate-700');
+        toggle?.classList.add('bg-slimergy-green');
+        
+        thumb?.classList.remove('translate-x-0');
+        thumb?.classList.add('translate-x-5');
+
+        if (wattsText) {
+          wattsText.classList.remove('text-slate-400', 'dark:text-slate-500');
+          wattsText.classList.add('text-slimergy-green');
+          wattsText.textContent = nominalWatts + ' W';
+        }
+      } else {
+        toggle?.classList.remove('bg-slimergy-green');
+        toggle?.classList.add('bg-slate-200', 'dark:bg-slate-700');
+
+        thumb?.classList.remove('translate-x-5');
+        thumb?.classList.add('translate-x-0');
+
+        if (wattsText) {
+          wattsText.classList.remove('text-slimergy-green');
+          wattsText.classList.add('text-slate-400', 'dark:text-slate-500');
+          wattsText.textContent = '0 W';
+        }
+      }
+
+      updateTotals(deviceName, nextActive);
+    });
+  });
+
+  // Filtros de navegación por habitación
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.getAttribute('data-filter');
+
+      // Actualizar botón activo
+      filterPills.forEach(p => {
+        p.classList.remove('bg-slimergy-dark', 'dark:bg-slimergy-green', 'text-white', 'dark:text-slimergy-dark');
+        p.classList.add('bg-white', 'dark:bg-slimergy-app-sub', 'text-slimergy-muted', 'dark:text-slimergy-app-muted', 'border-slimergy-border', 'dark:border-slimergy-app-border');
+      });
+      pill.classList.remove('bg-white', 'dark:bg-slimergy-app-sub', 'text-slimergy-muted', 'dark:text-slimergy-app-muted', 'border-slimergy-border', 'dark:border-slimergy-app-border');
+      pill.classList.add('bg-slimergy-dark', 'dark:bg-slimergy-green', 'text-white', 'dark:text-slimergy-dark');
+
+      // Filtrar dispositivos en pantalla
+      deviceCards.forEach(card => {
+        const room = card.getAttribute('data-room');
+        if (filter === 'all' || room === filter) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Responder a solicitudes de estado inicial de otros componentes
+  window.addEventListener('slimergy-request-rooms-state', () => {
+    updateTotals();
+  });
+
+  // Sincronización inicial
+  updateTotals();
+</script>

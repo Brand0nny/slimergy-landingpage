@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-page-bg: #F4F6F8;
+  --theme-card-bg: #FFFFFF;
+  --theme-card-hover: #F8FAFC;
+  --theme-sub-bg: #EFF2F7;
+  --theme-border: #E2E8F0;
+  --theme-text-main: #111827;
+  --theme-text-muted: #64748B;
+  --theme-green: #00DF6D;
+  --theme-green-dark: #042D15;
+}
+
+html.dark {
+  --theme-page-bg: #0D1524;
+  --theme-card-bg: #162032;
+  --theme-card-hover: #1C2940;
+  --theme-sub-bg: #101928;
+  --theme-border: #223049;
+  --theme-text-main: #FFFFFF;
+  --theme-text-muted: #8E9EB5;
+  --theme-green: #00DF6D;
+  --theme-green-dark: #042D15;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--theme-page-bg);
+    color: var(--theme-text-main);
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--theme-page-bg);
+    color: var(--theme-text-main);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Barra de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #E8ECF0;
+  }
+  html.dark ::-webkit-scrollbar-track {
+    background: #162032;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00DF6D;
+    border-radius: 9999px;
+  }
+}
+
+/* Sobreescrituras de tema para asegurar contraste consistente */
+html:not(.dark) {
+  color-scheme: light;
+}
+
+html:not(.dark) .text-slimergy-main {
+  color: #111827 !important;
+}
+html:not(.dark) .text-slimergy-muted {
+  color: #475569 !important;
+}
+html:not(.dark) .bg-white {
+  background-color: #FFFFFF !important;
+}
+html:not(.dark) .bg-slimergy-bg {
+  background-color: #F4F6F8 !important;
+}
+html:not(.dark) .border-slimergy-border {
+  border-color: #E2E8F0 !important;
+}
+
+/* Modo oscuro */
+html.dark {
+  color-scheme: dark;
+  background-color: #0D1524 !important;
+  color: #FFFFFF !important;
+}
+html.dark body {
+  background-color: #0D1524 !important;
+  color: #FFFFFF !important;
+}
+
+/* Utilidades para fondo y bordes oscuros */
+html.dark .dark\:bg-slimergy-app-bg {
+  background-color: #0D1524 !important;
+}
+html.dark .dark\:bg-slimergy-app-card {
+  background-color: #162032 !important;
+}
+html.dark .dark\:bg-slimergy-app-sub {
+  background-color: #101928 !important;
+}
+html.dark .dark\:border-slimergy-app-border {
+  border-color: #223049 !important;
+}
+html.dark .dark\:text-white {
+  color: #FFFFFF !important;
+}
+html.dark .dark\:text-slimergy-app-muted {
+  color: #8E9EB5 !important;
+}
+
+/* Barra de navegación superior */
+#main-nav {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+html.dark #main-nav {
+  background-color: rgba(13, 21, 36, 0.95) !important;
+  border-bottom: 1px solid #223049 !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Menú móvil desplegable */
+#mobile-drawer {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+  overflow: hidden !important;
+}
+
+#mobile-drawer .mobile-nav-link {
+  color: #111827 !important;
+  border: none !important;
+}
+
+#mobile-drawer .mobile-nav-link:hover,
+#mobile-drawer .mobile-nav-link:focus {
+  color: #065F46 !important;
+  background-color: #ECFDF5 !important;
+}
+
+/* Menú móvil en modo oscuro */
+html.dark #mobile-drawer {
+  background-color: #0D1524 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark #mobile-drawer .mobile-nav-link {
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+html.dark #mobile-drawer .mobile-nav-link:hover,
+html.dark #mobile-drawer .mobile-nav-link:focus {
+  color: #00DF6D !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Botón de menú hamburguesa */
+#mobile-btn {
+  background-color: #FFFFFF !important;
+  color: #111827 !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+#mobile-btn:hover {
+  color: #065F46 !important;
+  border-color: #10B981 !important;
+  background-color: #ECFDF5 !important;
+}
+
+html.dark #mobile-btn {
+  background-color: #162032 !important;
+  color: #E2E8F0 !important;
+  border: 1px solid #223049 !important;
+}
+
+html.dark #mobile-btn:hover {
+  color: #00DF6D !important;
+  border-color: #00DF6D !important;
+  background-color: #1C2940 !important;
+}
+
+/* Alternar logo según el tema activo */
+.logo-light {
+  display: block !important;
+}
+.logo-dark {
+  display: none !important;
+}
+html.dark .logo-light {
+  display: none !important;
+}
+html.dark .logo-dark {
+  display: block !important;
+}
+
+/* Alternar capturas de la app según el tema */
+.screenshot-light {
+  display: block !important;
+}
+.screenshot-dark {
+  display: none !important;
+}
+html.dark .screenshot-light {
+  display: none !important;
+}
+html.dark .screenshot-dark {
+  display: block !important;
+}
+
+/* Carcasa del teléfono (mockup) */
+.phone-casing {
+  background-color: #FFFFFF !important;
+  border: 4px solid #FFFFFF !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+}
+html.dark .phone-casing {
+  background-color: #131B2A !important;
+  border: 4px solid #1F293D !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Iconos de sol y luna en el switch de tema */
+.knob-sun {
+  display: block !important;
+}
+.knob-moon {
+  display: none !important;
+}
+html.dark .knob-sun {
+  display: none !important;
+}
+html.dark .knob-moon {
+  display: block !important;
+}
+
+/* Reglas de respaldo para modo oscuro */
+html.dark .bg-white:not([class*="dark:bg-"]):not(.phone-casing) {
+  background-color: #162032 !important;
+}
+html.dark .bg-slimergy-bg:not([class*="dark:bg-"]) {
+  background-color: #0D1524 !important;
+}
+html.dark .border-slimergy-border:not([class*="dark:border-"]):not(.phone-casing) {
+  border-color: #223049 !important;
+}
+html.dark .border-gray-100:not([class*="dark:border-"]) {
+  border-color: #223049 !important;
+}
+html.dark .text-slimergy-main:not([class*="dark:text-"]) {
+  color: #FFFFFF !important;
+}
+html.dark .text-slimergy-muted:not([class*="dark:text-"]) {
+  color: #8E9EB5 !important;
+}
+
+/* Patrón de puntos de fondo */
+.bg-app-pattern {
+  background-image: radial-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+html.dark .bg-app-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+/* Punto pulsante para indicador en vivo */
+@keyframes live-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 223, 109, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.85;
+    box-shadow: 0 0 0 6px rgba(0, 223, 109, 0);
+  }
+}
+
+.animate-live {
+  animation: live-pulse 2s infinite ease-in-out;
+}
+
+/* Animaciones de entrada al hacer scroll */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retardos escalonados para elementos hijos */
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+
+/* Barra deslizadora de consumo CFE con relleno dinámico */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #00DF6D 0%, #00DF6D var(--range-progress, 28.26%), #EDF2F7 var(--range-progress, 28.26%), #EDF2F7 100%) !important;
+  border: 1px solid #D5DEE7 !important;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="range"]:hover {
+  border-color: #00DF6D !important;
+}
+
+html.dark input[type="range"] {
+  background: linear-gradient(to right, #00DF6D 0%, #00DF6D var(--range-progress, 28.26%), #1A2536 var(--range-progress, 28.26%), #1A2536 100%) !important;
+  border: 1px solid #26364D !important;
+}
+
+html.dark input[type="range"]:hover {
+  border-color: #00DF6D !important;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 12px;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background-color: #00DF6D;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 223, 109, 0.45), 0 1px 3px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  margin-top: -6px; /* centra el botón de 24px en la pista de 12px */
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+  background-color: #00C85E;
+  box-shadow: 0 3px 12px rgba(0, 223, 109, 0.6);
+}
+
+/* Compatibilidad para Firefox */
+input[type="range"]::-moz-range-track {
+  height: 12px;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background-color: #00DF6D;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 223, 109, 0.45), 0 1px 3px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover,
+input[type="range"]::-moz-range-thumb:active {
+  transform: scale(1.15);
+  background-color: #00C85E;
+}
+
+html.dark input[type="range"]::-webkit-slider-thumb {
+  border-color: #162032;
+  box-shadow: 0 0 12px rgba(0, 223, 109, 0.7);
+}
+
+html.dark input[type="range"]::-moz-range-thumb {
+  border-color: #162032;
+  box-shadow: 0 0 12px rgba(0, 223, 109, 0.7);
+}
+

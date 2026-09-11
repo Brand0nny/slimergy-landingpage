@@ -1,0 +1,94 @@
+---
+// Características principales de la plataforma Slimergy
+---
+
+<section class="py-12 sm:py-24 md:py-32 bg-slimergy-bg dark:bg-slimergy-app-bg relative overflow-hidden transition-colors duration-200" id="caracteristicas">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 reveal-init">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slimergy-main dark:text-white tracking-tight mb-4 sm:mb-5">
+        Todo para <span class="text-slimergy-green">tomar el control</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slimergy-muted dark:text-slimergy-app-muted font-medium">
+        Hardware de bajo costo + software inteligente = visibilidad total de tu consumo eléctrico.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-7">
+      
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Monitoreo en Tiempo Real</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Visualiza cuántos Watts consume cada cuarto y dispositivo, con actualización automática cada 2 segundos mediante el protocolo MQTT industrial.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init reveal-d1">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <rect x="5" y="2" width="14" height="20" rx="2" />
+            <path d="M12 18h.01" />
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Control Remoto</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Apaga y enciende enchufes inteligentes Slimergy desde tu celular con latencia menor a 100 ms. El relay ESP32 responde al instante.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init reveal-d2">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8v1m0 8v1m0-10V3m0 18v-1"/><circle cx="12" cy="12" r="9"/>
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Cálculo de Costos CFE</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Calcula el costo en pesos según la tarifa escalonada DAC 2026 de CFE, con proyección al cierre del mes. Sin sorpresas en tu recibo.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Alertas Inteligentes</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Notificaciones push cuando un dispositivo consume más del 40% sobre su promedio histórico, detectando posibles fallas o uso inusual.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init reveal-d1">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Historial y Gráficas</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Gráficas de consumo diario, semanal y mensual. Identifica patrones de uso, picos de consumo y compara tu desempeño mes a mes.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover dark:hover:border-slimergy-green/40 transition-all duration-300 group reveal-init reveal-d2">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-slimergy-green flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform">
+          <svg class="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="text-sm sm:text-xl font-extrabold text-slimergy-main dark:text-white mb-1.5 sm:mb-2.5">Consejos Personalizados</h3>
+        <p class="hidden sm:block text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed font-medium">
+          Recomendaciones de ahorro adaptadas al perfil de consumo real de tu hogar, generadas a partir de los datos históricos del sensor.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>

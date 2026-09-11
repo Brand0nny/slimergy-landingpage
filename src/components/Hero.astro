@@ -1,0 +1,97 @@
+---
+// src/components/Hero.astro
+import AppMockup from './AppMockup.astro';
+---
+
+<section class="relative pt-24 pb-10 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 overflow-hidden bg-slimergy-bg dark:bg-slimergy-app-bg bg-app-pattern transition-colors duration-300" id="top">
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-br from-slimergy-green/15 to-slimergy-blue/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+  <div class="absolute -top-10 -left-20 w-80 h-80 bg-slimergy-green/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      
+      <!-- Columna izquierda: Título, descripción y llamados a la acción -->
+      <div class="lg:col-span-7 flex flex-col items-start reveal-init">
+        
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slimergy-main dark:text-white tracking-tight leading-[1.1] mb-5 sm:mb-6">
+          El poder de <span class="text-slimergy-green">ahorrar</span><br class="hidden sm:inline"> empieza con <span class="text-slimergy-green">medir</span>
+        </h1>
+
+        <p class="text-base sm:text-lg lg:text-xl text-slimergy-muted dark:text-slimergy-app-muted font-medium leading-relaxed max-w-2xl mb-6 sm:mb-8">
+          Slimergy es un sistema embebido de monitoreo y control de energía eléctrica para hogares mexicanos. Visualiza tu consumo en tiempo real, controla dispositivos remotamente y proyecta tu recibo de CFE al centavo.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8 sm:mb-10 w-full sm:w-auto">
+          <a 
+            href="#demo" 
+            class="inline-flex items-center justify-center gap-2.5 bg-slimergy-green hover:bg-slimergy-green-hover text-slimergy-green-dark font-extrabold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-full transition-all duration-200 shadow-green-glow hover:-translate-y-0.5 text-center"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Ver Demo
+          </a>
+
+          <a 
+            href="#cuartos-demo" 
+            class="inline-flex items-center justify-center gap-2 bg-white dark:bg-slimergy-app-card hover:bg-slate-50 dark:hover:bg-slimergy-app-card-hover text-slimergy-main dark:text-white border border-slimergy-border dark:border-slimergy-app-border font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-full transition-all duration-200 shadow-sm hover:shadow-md text-center"
+          >
+            Simulador de Cuartos
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+
+          <a 
+            href="https://www.instagram.com/slimergy_26/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#FD5949] via-[#D6249F] to-[#285AEB] hover:opacity-90 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 sm:py-4 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-center"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @slimergy_26
+          </a>
+        </div>
+
+        <!-- Insignias con datos clave del sistema -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-xl reveal-init reveal-d1">
+          <div class="bg-white dark:bg-slimergy-app-card border border-slimergy-border dark:border-slimergy-app-border rounded-2xl p-3 shadow-sm flex items-center gap-2.5 transition-colors duration-200">
+            <div class="w-7 h-7 rounded-lg bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 stroke-current fill-none stroke-[2.5]" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold text-slimergy-main dark:text-white">Precisión ±0.5%</span>
+          </div>
+
+          <div class="bg-white dark:bg-slimergy-app-card border border-slimergy-border dark:border-slimergy-app-border rounded-2xl p-3 shadow-sm flex items-center gap-2.5 transition-colors duration-200">
+            <div class="w-7 h-7 rounded-lg bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold text-slimergy-main dark:text-white">Telemetría cada 2s</span>
+          </div>
+
+          <div class="bg-white dark:bg-slimergy-app-card border border-slimergy-border dark:border-slimergy-app-border rounded-2xl p-3 shadow-sm flex items-center gap-2.5 col-span-2 sm:col-span-1 transition-colors duration-200">
+            <div class="w-7 h-7 rounded-lg bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 stroke-current fill-none stroke-2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <span class="text-xs font-bold text-slimergy-main dark:text-white">Tarifas CFE 2026</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna derecha: Mockup interactivo del teléfono -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-init">
+        <AppMockup />
+      </div>
+
+    </div>
+  </div>
+</section>

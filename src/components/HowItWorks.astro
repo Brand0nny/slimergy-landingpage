@@ -1,0 +1,82 @@
+---
+// Flujo explicativo de funcionamiento en 3 pasos
+---
+
+<section class="py-12 sm:py-24 md:py-32 bg-white dark:bg-slimergy-app-bg relative overflow-hidden transition-colors duration-200" id="como-funciona">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-16 reveal-init">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-slimergy-main dark:text-white tracking-tight mb-4 sm:mb-5">
+        ¿Cómo funciona <span class="text-slimergy-green">Slimergy</span>?
+      </h2>
+      <p class="text-base sm:text-lg text-slimergy-muted dark:text-slimergy-app-muted font-medium">
+        Un flujo de tres pasos que convierte tu instalación eléctrica en información útil, clara y accionable.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 relative">
+      
+      <!-- Paso 1: Mide -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-6 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover transition-all duration-300 relative group reveal-init">
+        <div class="mb-5 sm:mb-6">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slimergy-green text-slimergy-green-dark flex items-center justify-center font-black text-lg sm:text-xl shadow-green-subtle">
+            01
+          </div>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-extrabold text-slimergy-main dark:text-white mb-2.5 sm:mb-3">Mide</h3>
+        <p class="text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed mb-6 font-medium">
+          El sensor PZEM-004T monitorea tu línea AC con precisión ±0.5%, midiendo voltaje, corriente, potencia activa y energía acumulada en kWh — sin cortar cables.
+        </p>
+
+        <div class="p-3 bg-white dark:bg-slimergy-app-sub rounded-2xl border border-slimergy-border dark:border-slimergy-app-border text-xs font-bold text-slimergy-main dark:text-white flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-slimergy-green shrink-0" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span>Medición AC con pinza CT sin cortes</span>
+        </div>
+      </div>
+
+      <!-- Paso 2: Analiza -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-6 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover transition-all duration-300 relative group reveal-init reveal-d1">
+        <div class="mb-5 sm:mb-6">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slimergy-dark dark:bg-slimergy-green text-slimergy-green dark:text-slimergy-dark flex items-center justify-center font-black text-lg sm:text-xl shadow-sm">
+            02
+          </div>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-extrabold text-slimergy-main dark:text-white mb-2.5 sm:mb-3">Analiza</h3>
+        <p class="text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed mb-6 font-medium">
+          El ESP32 serializa los datos en JSON y los publica vía MQTT al broker HiveMQ cada 2 segundos. La app React Native los convierte en gráficas, costos CFE y alertas inteligentes.
+        </p>
+
+        <div class="p-3 bg-white dark:bg-slimergy-app-sub rounded-2xl border border-slimergy-border dark:border-slimergy-app-border text-xs font-mono font-bold text-slimergy-main dark:text-white flex items-center gap-2 overflow-x-auto">
+          <span class="text-slimergy-green font-bold">#</span>
+          <span>WiFi + JSON + Broker HiveMQ</span>
+        </div>
+      </div>
+
+      <!-- Paso 3: Ahorra -->
+      <div class="bg-slimergy-bg dark:bg-slimergy-app-card rounded-3xl sm:rounded-[36px] p-6 sm:p-8 border border-slimergy-border dark:border-slimergy-app-border shadow-app dark:shadow-none hover:shadow-app-hover transition-all duration-300 relative group reveal-init reveal-d2">
+        <div class="mb-5 sm:mb-6">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slimergy-green text-slimergy-green-dark flex items-center justify-center font-black text-lg sm:text-xl shadow-green-subtle">
+            03
+          </div>
+        </div>
+
+        <h3 class="text-xl sm:text-2xl font-extrabold text-slimergy-main dark:text-white mb-2.5 sm:mb-3">Ahorra</h3>
+        <p class="text-sm text-slimergy-muted dark:text-slimergy-app-muted leading-relaxed mb-6 font-medium">
+          Con visibilidad total y control remoto desde tu celular, toma decisiones que reduzcan costos, optimicen recursos y promuevan un uso eficiente de la energía en tu hogar.
+        </p>
+
+        <div class="p-3 bg-white dark:bg-slimergy-app-sub rounded-2xl border border-slimergy-border dark:border-slimergy-app-border text-xs font-bold text-slimergy-main dark:text-white flex items-center gap-2">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[2.5] text-slimergy-green shrink-0" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Control remoto de relay en &lt;100 ms</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

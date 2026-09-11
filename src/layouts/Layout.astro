@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Slimergy — Monitoreo y Control Inteligente de Energía para Hogares Mexicanos",
+  description = "Sistema IoT de bajo costo con ESP32, sensor PZEM-004T y App móvil React Native. Visualiza tu consumo eléctrico en tiempo real, controla aparatos remotamente y proyecta tu recibo CFE."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Slimergy, IoT, ESP32, PZEM-004T, CFE DAC, ahorro de energía, domótica, México, React Native, MQTT" />
+    
+    <!-- Metadatos Open Graph para redes sociales -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/img/logo.png" />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lee el tema guardado en localStorage antes de que pinte la página para evitar parpadeos -->
+    <script is:inline>
+      (function() {
+        const storedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('slimergy-theme') : null;
+        if (storedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="font-sans selection:bg-slimergy-green selection:text-slimergy-green-dark transition-colors duration-300">
+    <slot />
+
+    <script>
+      // Observador para animar los elementos cuando entran en pantalla
+      document.addEventListener('DOMContentLoaded', () => {
+        requestAnimationFrame(() => {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -60px 0px'
+          });
+
+          document.querySelectorAll('.reveal-init').forEach((el) => {
+            observer.observe(el);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
