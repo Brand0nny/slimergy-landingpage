@@ -52,12 +52,12 @@
       </nav>
 
       <!-- Botones de acción (Escritorio) -->
-      <div class="hidden sm:flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-4">
         <!-- Interruptor giratorio de tema (Escritorio) -->
         <button 
           id="theme-toggle-desktop" 
           type="button"
-          class="theme-toggle-btn relative w-16 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none select-none flex items-center bg-slate-200 hover:bg-slate-300/80 dark:bg-slimergy-app-sub dark:hover:bg-slimergy-app-card border border-slate-300 hover:border-emerald-500/50 dark:border-slimergy-app-border dark:hover:border-slimergy-green/50 shadow-inner cursor-pointer hover:scale-105 active:scale-95"
+          class="theme-toggle-btn relative w-16 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none select-none flex items-center bg-slate-200 hover:bg-slate-300/80 dark:bg-slimergy-app-sub dark:hover:bg-slimergy-app-card border border-slate-300 hover:border-emerald-500/50 dark:border-slimergy-app-border dark:hover:border-slimergy-green/50 shadow-inner cursor-pointer hover:scale-105 active:scale-95 touch-manipulation"
           aria-label="Cambiar tema claro / oscuro"
           title="Alternar modo claro / oscuro"
         >
@@ -95,25 +95,42 @@
         </a>
       </div>
 
-      <!-- Controles para móvil (Tema y menú hamburguesa) -->
-      <div class="flex items-center gap-1.5 sm:hidden flex-shrink-0">
-        <!-- Selector de tema móvil -->
+      <!-- Controles para móvil y tablet (Tema y menú hamburguesa) -->
+      <div class="flex items-center gap-2 lg:hidden flex-shrink-0">
+        <!-- Acceso directo a Instagram en pantallas sm-lg (tablets/móvil horizontal) -->
+        <a 
+          href="https://www.instagram.com/slimergy_26/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-1.5 bg-slimergy-green hover:bg-slimergy-green-hover text-slimergy-green-dark font-extrabold text-xs px-3.5 py-2 rounded-full transition-all duration-200 shadow-green-subtle hover:shadow-green-glow"
+          aria-label="Instagram Slimergy"
+        >
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+
+        <!-- Selector de tema móvil (barra superior) -->
         <button 
           id="theme-toggle-mobile-bar" 
           type="button"
-          class="theme-toggle-btn relative w-13 h-7 rounded-full p-0.5 transition-all duration-300 focus:outline-none select-none flex items-center bg-slate-200 hover:bg-slate-300/80 dark:bg-slimergy-app-sub dark:hover:bg-slimergy-app-card border border-slate-300 hover:border-emerald-500/50 dark:border-slimergy-app-border dark:hover:border-slimergy-green/50 shadow-inner cursor-pointer active:scale-95 flex-shrink-0"
+          class="theme-toggle-btn relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none select-none flex items-center bg-slate-200 hover:bg-slate-300/80 dark:bg-slimergy-app-sub dark:hover:bg-slimergy-app-card border border-slate-300 hover:border-emerald-500/50 dark:border-slimergy-app-border dark:hover:border-slimergy-green/50 shadow-inner cursor-pointer active:scale-95 flex-shrink-0 touch-manipulation"
           aria-label="Cambiar tema claro / oscuro"
+          title="Alternar modo claro / oscuro"
         >
-          <div class="absolute inset-0 flex items-center justify-between px-1.5 text-xs pointer-events-none">
-            <svg class="w-2 h-2 text-amber-500/40 dark:text-transparent transition-colors" fill="currentColor" viewBox="0 0 20 20">
+          <!-- Iconos fijos de fondo -->
+          <div class="absolute inset-0 flex items-center justify-between px-2 text-xs pointer-events-none">
+            <svg class="w-2.5 h-2.5 text-amber-500/40 dark:text-transparent transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
             </svg>
-            <svg class="w-2 h-2 text-transparent dark:text-slate-500/60 transition-colors" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-2.5 h-2.5 text-transparent dark:text-slate-500/60 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
               <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
             </svg>
           </div>
 
-          <div class="theme-knob-mobile w-5 h-5 rounded-full bg-white dark:bg-slimergy-app-card shadow-md flex items-center justify-center z-10 border border-slate-200 dark:border-slimergy-green/60 pointer-events-none">
+          <!-- Botón deslizante giratorio -->
+          <div class="theme-knob-mobile w-6 h-6 rounded-full bg-white dark:bg-slimergy-app-card shadow-md flex items-center justify-center z-10 border border-slate-200 dark:border-slimergy-green/60 pointer-events-none">
             <svg class="knob-sun w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
             </svg>
@@ -126,7 +143,7 @@
         <!-- Botón para abrir/cerrar menú móvil -->
         <button 
           id="mobile-btn" 
-          class="p-2 rounded-xl bg-white dark:bg-slimergy-app-card border border-slimergy-border dark:border-slimergy-app-border text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-slimergy-green hover:border-emerald-500/50 dark:hover:border-slimergy-green/50 hover:bg-emerald-50/60 dark:hover:bg-slimergy-app-card-hover focus:outline-none transition-all duration-200 active:scale-90 shadow-sm flex-shrink-0"
+          class="p-2 rounded-xl bg-white dark:bg-slimergy-app-card border border-slimergy-border dark:border-slimergy-app-border text-slate-800 dark:text-slate-200 hover:text-emerald-800 dark:hover:text-slimergy-green hover:border-emerald-500/50 dark:hover:border-slimergy-green/50 hover:bg-emerald-50/60 dark:hover:bg-slimergy-app-card-hover focus:outline-none transition-all duration-200 active:scale-90 shadow-sm flex-shrink-0 touch-manipulation"
           aria-label="Abrir menú"
           aria-expanded="false"
         >
@@ -146,7 +163,7 @@
 <!-- Menú móvil desplegable -->
 <div 
   id="mobile-drawer" 
-  class="lg:hidden fixed inset-0 z-40 bg-white dark:bg-slimergy-app-bg transition-all duration-300 ease-in-out flex flex-col pt-20 pb-5 px-5 sm:px-6 overflow-hidden opacity-0 -translate-y-4 pointer-events-none"
+  class="lg:hidden fixed inset-0 z-40 bg-white dark:bg-slimergy-app-bg transition-all duration-300 ease-in-out flex flex-col pt-20 pb-5 px-5 sm:px-6 overflow-y-auto overflow-x-hidden opacity-0 -translate-y-4 pointer-events-none"
 >
   <!-- Lista de enlaces distribuida armónicamente sin espacios excesivos -->
   <div class="flex flex-col justify-evenly flex-1 py-2">
@@ -186,6 +203,54 @@
       <span>Misión &amp; Visión</span>
       <svg class="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-emerald-600 dark:group-hover:text-slimergy-green group-hover:translate-x-0.5 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </a>
+  </div>
+
+  <!-- Fila de tema dentro del menú desplegable -->
+  <div class="py-2.5 px-3.5 my-1.5 rounded-2xl bg-slate-100/90 dark:bg-slimergy-app-card/90 border border-slate-200 dark:border-slimergy-app-border flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-white dark:bg-slimergy-app-sub flex items-center justify-center border border-slate-200 dark:border-slimergy-app-border shadow-sm">
+        <svg class="knob-sun w-4 h-4 text-amber-500 fill-current" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+        <svg class="knob-moon w-4 h-4 text-slimergy-green fill-current" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      </div>
+      <div class="flex flex-col text-left">
+        <span class="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Modo de pantalla</span>
+        <span class="text-[11px] font-semibold text-slate-500 dark:text-slimergy-green">
+          <span class="dark:hidden">Modo Claro activo</span>
+          <span class="hidden dark:inline">Modo Oscuro activo</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Interruptor dentro del drawer -->
+    <button 
+      id="theme-toggle-drawer" 
+      type="button"
+      class="theme-toggle-btn relative w-14 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none select-none flex items-center bg-slate-200 hover:bg-slate-300/80 dark:bg-slimergy-app-sub dark:hover:bg-slimergy-app-card border border-slate-300 hover:border-emerald-500/50 dark:border-slimergy-app-border dark:hover:border-slimergy-green/50 shadow-inner cursor-pointer active:scale-95 flex-shrink-0 touch-manipulation"
+      aria-label="Cambiar tema claro / oscuro"
+      title="Alternar modo claro / oscuro"
+    >
+      <div class="absolute inset-0 flex items-center justify-between px-2 text-xs pointer-events-none">
+        <svg class="w-2.5 h-2.5 text-amber-500/40 dark:text-transparent transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+        <svg class="w-2.5 h-2.5 text-transparent dark:text-slate-500/60 transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      </div>
+
+      <div class="theme-knob-mobile w-6 h-6 rounded-full bg-white dark:bg-slimergy-app-card shadow-md flex items-center justify-center z-10 border border-slate-200 dark:border-slimergy-green/60 pointer-events-none">
+        <svg class="knob-sun w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+        <svg class="knob-moon w-3.5 h-3.5 text-slimergy-green fill-current" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      </div>
+    </button>
   </div>
 
   <!-- Botón destacado de Instagram con diseño amplio y visible -->
@@ -230,8 +295,15 @@
     transform: translateX(0) rotate(0deg);
   }
   :global(html.dark) .theme-knob-mobile {
-    transform: translateX(32px) rotate(360deg);
+    transform: translateX(24px) rotate(360deg);
     box-shadow: 0 0 12px rgba(0, 223, 109, 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-knob,
+    .theme-knob-mobile {
+      transition: none !important;
+    }
   }
 </style>
 
@@ -328,15 +400,26 @@
     lastScrollY = currentScrollY;
   }, { passive: true });
 
+  // Sincronizar etiqueta meta theme-color para navegadores móviles (Safari iOS, Chrome Android)
+  function updateThemeColorMeta(isDark: boolean) {
+    const metaThemes = document.querySelectorAll('meta[name="theme-color"]');
+    metaThemes.forEach(meta => {
+      meta.setAttribute('content', isDark ? '#0D1524' : '#F4F6F8');
+    });
+  }
+
   // Alternar tema y sincronizar con localStorage
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('slimergy-theme', isDark ? 'dark' : 'light');
     }
+    updateThemeColorMeta(isDark);
     window.dispatchEvent(new CustomEvent('theme-changed', { detail: { isDark } }));
   }
 
-  document.getElementById('theme-toggle-desktop')?.addEventListener('click', toggleTheme);
-  document.getElementById('theme-toggle-mobile-bar')?.addEventListener('click', toggleTheme);
+  // Escuchar clics en todos los botones de cambio de tema (escritorio, barra móvil, menú móvil)
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
 </script>
