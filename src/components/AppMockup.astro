@@ -2,12 +2,14 @@
 // Dashboard interactivo de la App Slimergy (pantalla de inicio)
 ---
 
-<div class="relative mx-auto w-full max-w-[340px] sm:max-w-[380px]">
-  <div class="absolute -inset-3 sm:-inset-4 bg-gradient-to-tr from-slimergy-green/20 to-slimergy-blue/15 rounded-[40px] sm:rounded-[48px] blur-2xl -z-10 pointer-events-none"></div>
+<div id="mockupStage" class="mockup-stage relative mx-auto w-full max-w-[340px] sm:max-w-[380px]">
+  <!-- Resplandor y sombra 3D ambiental de fondo -->
+  <div id="mockupAmbientGlow" class="mockup-ambient-glow absolute -inset-3 sm:-inset-4 bg-gradient-to-tr from-slimergy-green/25 to-slimergy-blue/20 rounded-[40px] sm:rounded-[48px] blur-2xl -z-10 pointer-events-none"></div>
 
-  <div class="phone-casing rounded-[38px] sm:rounded-[44px] p-2.5 sm:p-3 overflow-hidden transition-all duration-300">
+  <!-- Carcasa del teléfono con física de salto elástico -->
+  <div id="mockupPhoneCasing" class="mockup-phone-casing phone-casing rounded-[38px] sm:rounded-[44px] p-2.5 sm:p-3 overflow-hidden transition-all duration-300">
     <!-- Barra superior del teléfono simulado -->
-    <div class="w-full flex items-center justify-between px-4 sm:px-6 pt-1 sm:pt-2 pb-2.5 text-xs text-slate-400 dark:text-slate-500 font-medium">
+    <div id="mockupStatusBar" class="mockup-layer-status w-full flex items-center justify-between px-4 sm:px-6 pt-1 sm:pt-2 pb-2.5 text-xs text-slate-400 dark:text-slate-500 font-medium">
       <span>9:22</span>
       <div class="w-16 sm:w-20 h-3.5 sm:h-4 bg-slate-200 dark:bg-[#1F293D] rounded-full mx-auto"></div>
       <div class="flex items-center gap-1.5">
@@ -18,7 +20,8 @@
 
     <div class="bg-slimergy-bg dark:bg-slimergy-app-bg rounded-[28px] sm:rounded-[32px] p-3.5 sm:p-4 flex flex-col gap-3 sm:gap-3.5 select-none transition-colors duration-300">
       
-      <div class="flex items-center justify-between pt-1">
+      <!-- Capa 1: Cabecera "Hola, Slimergy" y badge en vivo -->
+      <div id="mockupHeaderLayer" class="mockup-layer-header relative z-20 flex items-center justify-between pt-1">
         <h3 class="text-lg sm:text-xl font-extrabold text-slimergy-main dark:text-white tracking-tight">Hola, Slimergy</h3>
         <div id="mockupLiveBadge" class="inline-flex items-center gap-1.5 bg-slimergy-dark dark:bg-slimergy-app-card text-white px-3 py-1 rounded-full text-[11px] font-bold border border-transparent dark:border-slimergy-app-border transition-all duration-300">
           <span class="w-2 h-2 rounded-full bg-slimergy-green animate-live"></span>
@@ -26,8 +29,8 @@
         </div>
       </div>
 
-      <!-- Tarjeta principal de consumo actual -->
-      <div id="mockupMainCard" class="bg-slimergy-green rounded-[26px] p-5 text-slimergy-green-dark shadow-green-subtle relative overflow-hidden transition-all duration-300">
+      <!-- Capa 2: Tarjeta protagonista de Consumo Actual (gran salto elástico hacia arriba y aterrizaje) -->
+      <div id="mockupMainCard" class="mockup-layer-maincard relative z-10 bg-slimergy-green rounded-[26px] p-5 text-slimergy-green-dark shadow-green-subtle relative overflow-hidden transition-all duration-300">
         <div class="flex items-center justify-between mb-2">
           <span class="font-bold text-sm text-slimergy-green-dark/85">Consumo actual</span>
           <div class="w-7 h-7 rounded-full bg-black/10 flex items-center justify-center">
@@ -60,9 +63,9 @@
         </div>
       </div>
 
-      <!-- Métricas secundarias: costo estimado y dispositivos activos -->
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
+      <!-- Capa 3: Métricas secundarias (Costo hoy y Activos) -->
+      <div id="mockupSubcardsLayer" class="mockup-layer-subcards grid grid-cols-2 gap-3 relative z-[8]">
+        <div class="mockup-subcard bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
           <div class="w-10 h-10 rounded-xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center font-bold text-lg shrink-0">
             $
           </div>
@@ -72,7 +75,7 @@
           </div>
         </div>
 
-        <div class="bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
+        <div class="mockup-subcard bg-white dark:bg-slimergy-app-card rounded-2xl p-3.5 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center gap-3 transition-colors duration-200">
           <div class="w-10 h-10 rounded-xl bg-slimergy-green-light dark:bg-slimergy-green/15 text-emerald-800 dark:text-slimergy-green flex items-center justify-center shrink-0">
             <svg class="w-5 h-5 stroke-current fill-none stroke-[2.2]" viewBox="0 0 24 24">
               <rect x="3" y="3" width="7" height="7" rx="1.5" />
@@ -88,8 +91,8 @@
         </div>
       </div>
 
-      <!-- Gráfica semanal de consumo -->
-      <div class="bg-white dark:bg-slimergy-app-card rounded-[24px] p-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border transition-colors duration-200">
+      <!-- Capa 4: Gráfica semanal de consumo -->
+      <div id="mockupChartLayer" class="mockup-layer-chart bg-white dark:bg-slimergy-app-card rounded-[24px] p-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border transition-colors duration-200 relative z-[6]">
         <div class="flex items-center justify-between mb-3">
           <span class="text-xs font-bold text-slimergy-main dark:text-white">Consumo 7 días</span>
           <span class="text-[10px] text-slimergy-muted dark:text-slimergy-app-muted font-semibold">kWh diarios</span>
@@ -131,8 +134,8 @@
         </div>
       </div>
 
-      <!-- Barra de navegación inferior de la app -->
-      <div class="bg-white dark:bg-slimergy-app-card rounded-2xl py-2 px-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center justify-between text-center transition-colors duration-200">
+      <!-- Capa 5: Barra de navegación inferior de la app -->
+      <div id="mockupNavLayer" class="mockup-layer-nav bg-white dark:bg-slimergy-app-card rounded-2xl py-2 px-4 shadow-sm border border-slimergy-border dark:border-slimergy-app-border flex items-center justify-between text-center transition-colors duration-200 relative z-[5]">
         <a href="#top" class="flex flex-col items-center gap-0.5 text-slimergy-green">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
           <span class="text-[9px] font-black">Inicio</span>
@@ -155,7 +158,406 @@
   </div>
 </div>
 
+<style>
+  /* En pantallas móviles (donde el teléfono queda abajo de los textos y botones),
+     se mantiene 100% oculto hasta que el usuario desliza la pantalla hacia él */
+  @media (max-width: 1023px) {
+    .mockup-stage:not(.mockup-animated) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    .mockup-stage.mockup-animated {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+    }
+  }
+
+  /* Estados iniciales: Parten desde abajo con opacidad cero */
+  .mockup-ambient-glow {
+    opacity: 0;
+    transform: scale(0.8) translateY(32px);
+    transition: opacity 0.5s ease;
+  }
+
+  .mockup-phone-casing {
+    opacity: 0;
+    transform: translate3d(0, 65px, 0);
+    will-change: transform, opacity;
+  }
+
+  /* Capas internas inician desplazadas verticalmente hacia abajo */
+  .mockup-layer-status {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    will-change: transform, opacity;
+  }
+
+  .mockup-layer-header {
+    opacity: 0;
+    transform: translate3d(0, 46px, 0);
+    will-change: transform, opacity;
+  }
+
+  .mockup-layer-maincard {
+    opacity: 0;
+    transform: translate3d(0, 52px, 0);
+    will-change: transform, opacity, box-shadow;
+  }
+
+  .mockup-subcard {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+    will-change: transform, opacity, box-shadow;
+  }
+
+  .mockup-layer-chart {
+    opacity: 0;
+    transform: translate3d(0, 48px, 0);
+    will-change: transform, opacity, box-shadow;
+  }
+
+  .mockup-layer-nav {
+    opacity: 0;
+    transform: translate3d(0, 44px, 0);
+    will-change: transform, opacity, box-shadow;
+  }
+
+  /* Coreografía ordenada de arriba hacia abajo con salto agresivo y sombras 3D en el ápice */
+  /* 1. Resplandor ambiental y chasis exterior del teléfono */
+  .mockup-stage.mockup-animated .mockup-ambient-glow {
+    animation: glow-bloom-snap 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .mockup-stage.mockup-animated .mockup-phone-casing {
+    animation: phone-snap 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  /* 2. Capas internas en cascada secuencial estricta (paso a paso de 80ms) */
+  .mockup-stage.mockup-animated .mockup-layer-status {
+    animation: cascade-snap-status 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.06s forwards;
+  }
+
+  .mockup-stage.mockup-animated .mockup-layer-header {
+    animation: cascade-snap-header 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.14s forwards;
+  }
+
+  .mockup-stage.mockup-animated .mockup-layer-maincard {
+    animation: cascade-snap-main 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.22s forwards;
+  }
+
+  .mockup-stage.mockup-animated .mockup-subcard {
+    animation: cascade-snap-subcard 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.30s forwards;
+  }
+
+  :global(html.dark) .mockup-stage.mockup-animated .mockup-subcard {
+    animation-name: cascade-snap-subcard-dark;
+  }
+
+  .mockup-stage.mockup-animated .mockup-layer-chart {
+    animation: cascade-snap-chart 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.38s forwards;
+  }
+
+  :global(html.dark) .mockup-stage.mockup-animated .mockup-layer-chart {
+    animation-name: cascade-snap-chart-dark;
+  }
+
+  .mockup-stage.mockup-animated .mockup-layer-nav {
+    animation: cascade-snap-nav 0.65s cubic-bezier(0.25, 1, 0.5, 1) 0.46s forwards;
+  }
+
+  /* Keyframe del chasis del teléfono */
+  @keyframes phone-snap {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 65px, 0);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -12px, 0);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Keyframe del resplandor de fondo */
+  @keyframes glow-bloom-snap {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(28px);
+    }
+    52% {
+      opacity: 0.95;
+      transform: scale(1.10) translateY(-6px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Keyframe de la barra de estado superior */
+  @keyframes cascade-snap-status {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 24px, 0);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -8px, 0);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Keyframe del saludo "Hola, Slimergy" con margen amplio para que nada lo cubra */
+  @keyframes cascade-snap-header {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 46px, 0);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -18px, 0);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  /* Keyframe de la tarjeta de Consumo Actual: subida potente con resplandor verde y sombra 3D */
+  @keyframes cascade-snap-main {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 52px, 0);
+      box-shadow: 0 4px 12px -2px rgba(0, 223, 109, 0.15);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -18px, 0);
+      box-shadow: 0 26px 46px -4px rgba(0, 223, 109, 0.52), 0 14px 28px -4px rgba(0, 0, 0, 0.28);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 10px 25px -5px rgba(0, 223, 109, 0.25);
+    }
+  }
+
+  /* Keyframe de subcards (Costo hoy y Activos) - Modo Claro: sombra de elevación 3D en el aire */
+  @keyframes cascade-snap-subcard {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -16px, 0);
+      box-shadow: 0 20px 34px -4px rgba(15, 23, 42, 0.22), 0 8px 16px -2px rgba(15, 23, 42, 0.12);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* Keyframe de subcards (Costo hoy y Activos) - Modo Oscuro: sombra profunda de oclusión */
+  @keyframes cascade-snap-subcard-dark {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -16px, 0);
+      box-shadow: 0 22px 38px -4px rgba(0, 0, 0, 0.85), 0 10px 18px -2px rgba(0, 0, 0, 0.6);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* Keyframe de la gráfica semanal - Modo Claro */
+  @keyframes cascade-snap-chart {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 48px, 0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -14px, 0);
+      box-shadow: 0 18px 30px -4px rgba(15, 23, 42, 0.18), 0 6px 14px -2px rgba(15, 23, 42, 0.1);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* Keyframe de la gráfica semanal - Modo Oscuro */
+  @keyframes cascade-snap-chart-dark {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 48px, 0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -14px, 0);
+      box-shadow: 0 20px 32px -4px rgba(0, 0, 0, 0.8), 0 8px 16px -2px rgba(0, 0, 0, 0.55);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* Keyframe de la barra de navegación inferior */
+  @keyframes cascade-snap-nav {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 44px, 0);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    52% {
+      opacity: 1;
+      transform: translate3d(0, -12px, 0);
+      box-shadow: 0 16px 26px -4px rgba(15, 23, 42, 0.16);
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* Al completar la animación (1.25s) liberamos los overrides para que hover y eventos sean nativos */
+  .mockup-stage.mockup-settled .mockup-ambient-glow,
+  .mockup-stage.mockup-settled .mockup-phone-casing,
+  .mockup-stage.mockup-settled .mockup-layer-status,
+  .mockup-stage.mockup-settled .mockup-layer-header,
+  .mockup-stage.mockup-settled .mockup-layer-maincard,
+  .mockup-stage.mockup-settled .mockup-subcard,
+  .mockup-stage.mockup-settled .mockup-layer-chart,
+  .mockup-stage.mockup-settled .mockup-layer-nav {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Accesibilidad para usuarios con reducción de movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .mockup-ambient-glow,
+    .mockup-phone-casing,
+    .mockup-layer-status,
+    .mockup-layer-header,
+    .mockup-layer-maincard,
+    .mockup-subcard,
+    .mockup-layer-chart,
+    .mockup-layer-nav {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
 <script>
+  // Disparar animación física de entrada del mockup
+  const stage = document.getElementById('mockupStage');
+  if (stage) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      stage.classList.add('mockup-animated', 'mockup-settled');
+    } else {
+      let isTriggered = false;
+
+      const triggerEntrance = () => {
+        if (isTriggered) return;
+        isTriggered = true;
+        stage.classList.add('mockup-animated');
+
+        // Liberar overrides tras finalizar la coreografía en cascada (1.25s)
+        setTimeout(() => {
+          stage.classList.add('mockup-settled');
+        }, 1250);
+      };
+
+      // En desktop (>= 1024px) está a la vista desde el inicio en el Hero
+      const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+      if (isDesktop) {
+        requestAnimationFrame(() => {
+          setTimeout(triggerEntrance, 80);
+        });
+      } else {
+        // En móvil (< 1024px) queda abajo del texto y botones.
+        // NO se muestra de inicio; se activa únicamente cuando el usuario desliza la pantalla hacia él
+        let hasScrolled = false;
+
+        const checkMobileVisibility = () => {
+          const rect = stage.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          // Se activa cuando el teléfono ya entra cómodamente en el campo de visión (al menos 80px adentro)
+          if (rect.top < windowHeight - 80 && rect.bottom > 0) {
+            triggerEntrance();
+            window.removeEventListener('scroll', handleMobileScroll);
+          }
+        };
+
+        const handleMobileScroll = () => {
+          hasScrolled = true;
+          checkMobileVisibility();
+        };
+
+        // Si se recarga la página y el usuario ya estaba abajo con scroll
+        if (window.scrollY > 40) {
+          checkMobileVisibility();
+        }
+
+        window.addEventListener('scroll', handleMobileScroll, { passive: true });
+
+        // Observador complementario que asegura activación al deslizar
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && (hasScrolled || window.scrollY > 30)) {
+              triggerEntrance();
+              observer.disconnect();
+              window.removeEventListener('scroll', handleMobileScroll);
+            }
+          });
+        }, {
+          threshold: 0.18,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        observer.observe(stage);
+      }
+    }
+  }
+
   // Sincronización en tiempo real de la App Slimergy con el Simulador de Cuartos
   let targetWatts = 1000.0;
   let currentWatts = 1000.0;

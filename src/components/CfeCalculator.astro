@@ -36,6 +36,10 @@
               max="25" 
               step="0.5" 
               value="8.5" 
+              aria-valuemin="2"
+              aria-valuemax="25"
+              aria-valuenow="8.5"
+              aria-valuetext="8.5 kilowatt-hora diarios"
               class="w-full cursor-pointer my-1 sm:my-2"
             />
             
@@ -107,7 +111,7 @@
 
       </div>
 
-      <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-400 font-medium text-center mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slimergy-border/60 dark:border-slimergy-app-border">
+      <div class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium text-center mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slimergy-border/60 dark:border-slimergy-app-border">
         * Cálculo estimado según estructura escalonada CFE (Básico: $1.05, Intermedio: $1.28, Excedente: $3.75, DAC: $6.20 por kWh + IVA).
       </div>
     </div>
@@ -131,6 +135,8 @@
     const max = parseFloat(rangeInput.max) || 25;
     const pct = ((dailyKwh - min) / (max - min)) * 100;
     rangeInput.style.setProperty('--range-progress', `${pct}%`);
+    rangeInput.setAttribute('aria-valuenow', dailyKwh.toString());
+    rangeInput.setAttribute('aria-valuetext', `${dailyKwh.toFixed(1)} kilowatt-hora diarios`);
 
     const bimonthlyKwh = dailyKwh * 60;
 
